@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.side-column {
+ text-align: center;
+ padding-top: 2%;
+ background-color: green;
+ width: 25%;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 2%;
+}
+
+.wins-text {
+    margin-top: 0;
+}
+
+
+
+main {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-status {
+    margin-top: 15%;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+
+
+.board-container {
+    width: 50%;
+    height: 50%;
+    margin-top: 10%;
+}
+
+.board {
+    width: 100%;
+    display: grid;
+    /* gap: 10px; */
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cell {
+    display: flex;
+    aspect-ratio: 1;
+    border: 5px solid blue;
+    box-sizing: border-box;
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+}
+
+#a1, #a2, #a3 {
+    border-top: 0px;
+}
+
+#c1, #c2, #c3 {
+    border-bottom: 0px;
+}
+
+#a1, #b1, #c1 {
+    border-left: 0px;
+}
+
+#a3, #b3, #c3 {
+    border-right: 0px;
+}
