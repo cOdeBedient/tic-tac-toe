@@ -16,6 +16,7 @@ var player1 = {
     token : 'X',
     wins : 0,
     currentSquares: {
+        all: [],
         squaresA: [],
         squaresB: [],
         squaresC: [],
@@ -32,6 +33,7 @@ var player2 = {
     token: 'O',
     wins: 0,
     currentSquares: {
+        all: [],
         squaresA: [],
         squaresB: [],
         squaresC: [],
@@ -50,6 +52,7 @@ function manageBoardClick(iD) {
     if (availableSquares.includes(iD)) {
         storeSquare(iD);
         updateAvailable(iD);
+        displayIcons();
     }
 }
 
@@ -58,8 +61,9 @@ function storeSquare(iD) {
         var secondChar = iD.charAt(1);
         var player = window[whosTurn];
         
+        player.currentSquares.all.push(iD);
         player.currentSquares[`squares${firstChar}`].push(iD);
-        player.currentSquares[`squares${secondChar}`].push(iD)
+        player.currentSquares[`squares${secondChar}`].push(iD);
         if (iD === ('a1' || 'b2' || 'c3')) {
             player.currentSquares.squaresDiagLR.push(iD);
         }
@@ -85,7 +89,17 @@ function checkForDraw() {
 }
 
 function displayIcons() {
-
+    for (var i = 0; i < player1.currentSquares.all.length; i++) {
+        console.log(`We made it inside the for loop ${i+1} times!`)
+        if (cells[i].id === player1.currentSquares.all[i]) {
+            cells[i].innerHTML = `${player1.token}`;
+        }
+    }
+    for (i = 0; i < player2.currentSquares.all; i++) {
+        if (cells[i].id === player2.currentSquares[i]) {
+            cells[i].innerHTML = player2.token;
+        }
+    }
 }
 
 function updateTurn() {
@@ -109,5 +123,9 @@ function displayWins() {
 }
 
 function resetBoard() {
-    
+
+}
+
+function resetStored() {
+
 }
