@@ -48,11 +48,13 @@ var player2 = {
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 
+// maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
     if (availableSquares.includes(iD)) {
         storeSquare(iD);
         updateAvailable(iD);
         displayIcons();
+        checkForWin();
         toggleTurn();
     }
 }
@@ -81,12 +83,30 @@ function updateAvailable(iD) {
     }
 }
 
+//check for draw a different function??
 function checkForWin() {
+    var player = window[whosTurn];
+    var winner;
 
-}
-
-function checkForDraw() {
-
+    if (
+        (player.currentSquares.squaresA.length === 3) ||
+        (player.currentSquares.squaresB.length === 3) ||
+        (player.currentSquares.squaresC.length === 3) ||
+        (player.currentSquares.squares1.length === 3) ||
+        (player.currentSquares.squares2.length === 3) ||
+        (player.currentSquares.squares3.length === 3) ||
+        (player.currentSquares.squaresDiagLR.length === 3) ||
+        (player.currentSquares.squaresDiagRL.length === 3)
+        )
+    {
+            winner = player.id;
+            console.log(`${winner} wins`)
+            processEndGame(winner);
+    } else if (availableSquares.length === 0) {
+        winner = 'draw';
+        console.log(`It's a ${winner}`)
+        processEndGame(winner);
+    }
 }
 
 function displayIcons() {
@@ -107,6 +127,10 @@ function toggleTurn() {
     } else {
         whosTurn = 'player1';
     }
+}
+
+function processEndGame() {
+    
 }
 
 function displayTurn() {
