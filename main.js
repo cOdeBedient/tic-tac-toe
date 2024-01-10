@@ -62,6 +62,7 @@ function storeSquare(iD) {
         var player = window[whosTurn];
         
         player.currentSquares.all.push(iD);
+        console.log('player1 currentSquares.all', player.currentSquares.all)
         player.currentSquares[`squares${firstChar}`].push(iD);
         player.currentSquares[`squares${secondChar}`].push(iD);
         if (iD === ('a1' || 'b2' || 'c3')) {
@@ -89,14 +90,14 @@ function checkForDraw() {
 }
 
 function displayIcons() {
-    for (var i = 0; i < player1.currentSquares.all.length; i++) {
+    for (var i = 0; i < cells.length; i++) {
         console.log(`We made it inside the for loop ${i+1} times!`)
-        if (cells[i].id === player1.currentSquares.all[i]) {
+        if (player1.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = `${player1.token}`;
         }
     }
     for (i = 0; i < player2.currentSquares.all; i++) {
-        if (cells[i].id === player2.currentSquares[i]) {
+        if (player2.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = player2.token;
         }
     }
