@@ -129,8 +129,26 @@ function toggleTurn() {
     }
 }
 
-function processEndGame() {
+function processEndGame(result) {
+    if (result != draw){
+        updateWins();
+        displayWins();
+
+    }
     
+}
+
+function updateWins() {
+    var player = window[whosTurn];
+    player.wins += 1;
+}
+
+function displayWins() {
+    
+}
+
+function resetStored() {
+
 }
 
 function displayTurn() {
@@ -141,18 +159,9 @@ function manageGameEnd() {
 
 }
 
-function updateWins() {
 
-}
-
-function displayWins() {
-
-}
 
 function resetBoard() {
 
 }
 
-function resetStored() {
-
-}
