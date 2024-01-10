@@ -47,31 +47,42 @@ availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 
 function manageBoardClick(iD) {
-    storeSquare(iD);
-    // updateAvailable(iD);
+    if (availableSquares.includes(iD)) {
+        storeSquare(iD);
+        updateAvailable(iD);
+    }
 }
 
 function storeSquare(iD) {
-    var firstChar = iD.charAt(0).toUpperCase();
-    var secondChar = iD.charAt(1);
-    var player = window[`${whosTurn}`];
-
-    player.currentSquares[`squares${firstChar}`].push(iD);
-    player.currentSquares[`squares${secondChar}`].push(iD);
-    if (iD === ('a1' || 'b2' || 'c3')) {
-        player.currentSquares.squaresDiagLR.push(iD);
+        var firstChar = iD.charAt(0).toUpperCase();
+        var secondChar = iD.charAt(1);
+        var player = window[whosTurn];
+        
+        player.currentSquares[`squares${firstChar}`].push(iD);
+        player.currentSquares[`squares${secondChar}`].push(iD)
+        if (iD === ('a1' || 'b2' || 'c3')) {
+            player.currentSquares.squaresDiagLR.push(iD);
+        }
+        if (iD === ('a3' || 'b2' || 'c1')) {
+            player.currentSquares.squaresDiagRL.push(iD);
+        }
     }
-    if (iD === ('a3' || 'b2' || 'c1')) {
-        player.currentSquares.squaresDiagRL.push(iD);
+
+function updateAvailable(iD) {
+    for (i = 0; i < availableSquares.length; i++) {
+        if (iD === availableSquares[i]) {
+            availableSquares.splice(i, 1);
+        }
     }
 }
-
-
 
 function checkForWin() {
 
 }
 
+function checkForDraw() {
+
+}
 
 function displayIcons() {
 
@@ -95,4 +106,8 @@ function updateWins() {
 
 function displayWins() {
 
+}
+
+function resetBoard() {
+    
 }
