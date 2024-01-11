@@ -66,10 +66,11 @@ function storeSquare(iD) {
         player.currentSquares.all.push(iD);
         player.currentSquares[`squares${firstChar}`].push(iD);
         player.currentSquares[`squares${secondChar}`].push(iD);
-        if (iD === ('a1' || 'b2' || 'c3')) {
+        console.log('made it here! and iD is', iD)
+        if (iD === 'a1' || 'b2' || 'c3') {
             player.currentSquares.squaresDiagLR.push(iD);
         }
-        if (iD === ('a3' || 'b2' || 'c1')) {
+        if (iD === 'a3' || 'b2' || 'c1') {
             player.currentSquares.squaresDiagRL.push(iD);
         }
     }
@@ -86,6 +87,7 @@ function updateAvailable(iD) {
 function checkForWin() {
     var player = window[whosTurn];
     var winner;
+    console.log('player.currentSquares.squaresDiagLR', player.currentSquares.squaresDiagLR);
     if (
         (player.currentSquares.squaresA.length === 3) ||
         (player.currentSquares.squaresB.length === 3) ||
