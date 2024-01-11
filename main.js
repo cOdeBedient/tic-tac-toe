@@ -127,7 +127,13 @@ function displayIcons() {
 // can we use our math here? Is this DRY?
 function toggleTurn() {
     if (cPUMode) {
-        generateTurn();
+        if (whosTurn === 'player1') {
+            whosTurn = 'player2';
+            generateTurn();
+        } else {
+            whosTurn = 'player1';
+            }
+            displayTurn();
     } else {
         if (whosTurn === 'player1') {
         whosTurn = 'player2';
@@ -139,8 +145,9 @@ function toggleTurn() {
 }
 
 function generateTurn() {
-    var randomCellsIndex = Math.random() * availableSquares.length;
+    var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
     var randomCell = availableSquares[randomCellsIndex];
+    console.log(randomCell)
     manageBoardClick(randomCell);
 }
 
