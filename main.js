@@ -57,7 +57,6 @@ function manageBoardClick(iD) {
         displayIcons();
         checkForWin();
         if (!isOver) {
-            console.log('we made it here')
             toggleTurn();
         }
     }
@@ -102,15 +101,13 @@ function checkForWin() {
         (player.currentSquares.squaresDiagRL.length === 3)
         )
     {
-            winner = player.id;
-            console.log(`${winner} wins`)
-            processEndGame(winner);
-            isOver = true;
+        winner = player.id;
+        isOver = true;
+        processEndGame(winner);
     } else if (availableSquares.length === 0) {
         winner = 'draw';
-        console.log(`It's a ${winner}`)
-        processEndGame(winner);
         isOver = true;
+        processEndGame(winner);
     }
 }
 
@@ -150,7 +147,9 @@ function processEndGame(winner) {
         displayWins();
         manageGameEnd(winner);
         resetStored();
-        setTimeout(resetBoard, 5000);
+        setTimeout(displayIcons, 3000);
+        setTimeout(displayTurn, 3000);
+        setTimeout(resetIsOver, 3000)
     } else {
         manageEndGame('draw');
     }
@@ -190,7 +189,6 @@ function resetStored() {
         squaresDiagRL: []
     }
     availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
-    isOver = false;
 }
 
 function manageGameEnd(winner) {
@@ -202,8 +200,7 @@ function manageGameEnd(winner) {
     }
 }
 
-function resetBoard() {
-    toggleTurn();
-    displayIcons();
+function resetIsOver () {
+    isOver = false;
 }
 
