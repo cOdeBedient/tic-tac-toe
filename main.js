@@ -47,13 +47,18 @@ var player2 = {
 
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
+isOver = false;
 
+// maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
     if (availableSquares.includes(iD)) {
         storeSquare(iD);
         updateAvailable(iD);
         displayIcons();
-        toggleTurn();
+        checkForWin();
+        if (!isOver) {
+            toggleTurn();
+        }
     }
 }
 
@@ -81,16 +86,34 @@ function updateAvailable(iD) {
     }
 }
 
+//check for draw a different function??
 function checkForWin() {
-
-}
-
-function checkForDraw() {
-
+    var player = window[whosTurn];
+    var winner;
+    if (
+        (player.currentSquares.squaresA.length === 3) ||
+        (player.currentSquares.squaresB.length === 3) ||
+        (player.currentSquares.squaresC.length === 3) ||
+        (player.currentSquares.squares1.length === 3) ||
+        (player.currentSquares.squares2.length === 3) ||
+        (player.currentSquares.squares3.length === 3) ||
+        (player.currentSquares.squaresDiagLR.length === 3) ||
+        (player.currentSquares.squaresDiagRL.length === 3)
+        )
+    {
+        winner = player.id;
+        isOver = true;
+        processEndGame(winner);
+    } else if (availableSquares.length === 0) {
+        winner = 'draw';
+        isOver = true;
+        processEndGame(winner);
+    }
 }
 
 function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
+        cells[i].innerHTML = '';
         if (player1.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = `${player1.token}`;
         }
@@ -100,35 +123,84 @@ function displayIcons() {
     }
 }
 
-// can we use our math here?
+// can we use our math here? Is this DRY?
 function toggleTurn() {
     if (whosTurn === 'player1') {
         whosTurn = 'player2';
     } else {
         whosTurn = 'player1';
     }
+    displayTurn();
 }
 
 function displayTurn() {
-
+    if (whosTurn === 'player1') {
+        statusTitle.innerHTML = `It's ${player1.token}'s turn`
+    } else {
+        statusTitle.innerHTML = `It's ${player2.token}'s turn`
+    }
 }
 
-function manageGameEnd() {
-
+function processEndGame(winner) {
+    if (winner != 'draw'){
+        updateWins();
+        displayWins();
+        manageGameEnd(winner);
+        resetStored();
+        setTimeout(displayIcons, 3000);
+        setTimeout(displayTurn, 3000);
+        setTimeout(resetIsOver, 3000)
+    } else {
+        manageEndGame('draw');
+    }
 }
 
 function updateWins() {
-
+    var player = window[whosTurn];
+    player.wins += 1;
 }
 
 function displayWins() {
-
-}
-
-function resetBoard() {
-
+        p1Wins.innerHTML = `${player1.wins} wins`;
+        p2Wins.innerHTML = `${player2.wins} wins`;
 }
 
 function resetStored() {
-
+    player1.currentSquares = {
+        all: [],
+        squaresA: [],
+        squaresB: [],
+        squaresC: [],
+        squares1: [],
+        squares2: [],
+        squares3: [],
+        squaresDiagLR: [],
+        squaresDiagRL: []
+    }
+    player2.currentSquares = {
+        all: [],
+        squaresA: [],
+        squaresB: [],
+        squaresC: [],
+        squares1: [],
+        squares2: [],
+        squares3: [],
+        squaresDiagLR: [],
+        squaresDiagRL: []
+    }
+    availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 }
+
+function manageGameEnd(winner) {
+    if (winner === 'draw') {
+        statusTitle.innerHTML = "It's a Draw!"
+    } else {
+        var player = window[whosTurn];
+        statusTitle.innerHTML = `${player.token} won the game!`
+    }
+}
+
+function resetIsOver () {
+    isOver = false;
+}
+
