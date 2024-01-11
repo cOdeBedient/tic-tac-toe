@@ -57,6 +57,7 @@ function manageBoardClick(iD) {
         displayIcons();
         checkForWin();
         if (!isOver) {
+            console.log('we made it here')
             toggleTurn();
         }
     }
@@ -115,33 +116,31 @@ function checkForWin() {
 
 function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
+        cells[i].innerHTML = '';
         if (player1.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = `${player1.token}`;
-        } else {
-            cells[i].innerHTML = '';
         }
         if (player2.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = `${player2.token}`;
-        } else {
-            cells[i].innerHTML = '';
         }
     }
 }
 
-// can we use our math here?
+// can we use our math here? Is this DRY?
 function toggleTurn() {
     if (whosTurn === 'player1') {
         whosTurn = 'player2';
     } else {
         whosTurn = 'player1';
     }
+    displayTurn();
 }
 
 function displayTurn() {
     if (whosTurn === 'player1') {
-        statusTitle.innerHTML = `It's ${player1.id}'s turn`
+        statusTitle.innerHTML = `It's ${player1.token}'s turn`
     } else {
-        statusTitle.innerHTML = `It's ${player2.id}'s turn`
+        statusTitle.innerHTML = `It's ${player2.token}'s turn`
     }
 }
 
