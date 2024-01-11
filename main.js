@@ -47,7 +47,6 @@ var player2 = {
 
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
-// isOver = false;
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
@@ -56,9 +55,6 @@ function manageBoardClick(iD) {
         updateAvailable(iD);
         displayIcons();
         checkForWin();
-        // if (!isOver) {
-        //     toggleTurn();
-        // }
     }
 }
 
@@ -102,11 +98,9 @@ function checkForWin() {
         )
     {
         winner = player.id;
-        // isOver = true;
         processEndGame(winner);
     } else if (availableSquares.length === 0) {
         winner = 'draw';
-        // isOver = true;
         processEndGame(winner);
     } else {
         toggleTurn();
@@ -148,13 +142,12 @@ function processEndGame(winner) {
         updateWins();
         displayWins();
         manageGameEnd(winner);
-        resetStored();
-        setTimeout(displayIcons, 3000);
-        setTimeout(toggleTurn, 3000);
-        // setTimeout(resetIsOver, 3000)
     } else {
-        manageEndGame('draw');
+        manageGameEnd('draw');  
     }
+    resetStored();
+    setTimeout(displayIcons, 3000);
+    setTimeout(toggleTurn, 3000);
 }
 
 function updateWins() {
@@ -194,6 +187,7 @@ function resetStored() {
 }
 
 function manageGameEnd(winner) {
+    console.log(winner);
     if (winner === 'draw') {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
@@ -201,8 +195,3 @@ function manageGameEnd(winner) {
         statusTitle.innerHTML = `${player.token} won the game!`
     }
 }
-
-// function resetIsOver () {
-//     isOver = false;
-// }
-
