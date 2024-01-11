@@ -6,8 +6,10 @@ statusTitle = document.querySelector('.game-status');
 
 
 board.addEventListener('click', function(event) {
-    var currentID = event.target.id;
-    manageBoardClick(currentID);
+    if (!actionStop){
+        var currentID = event.target.id;
+        manageBoardClick(currentID);
+    }
 });
 
 
@@ -47,6 +49,7 @@ var player2 = {
 
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
+var actionStop = false;
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
@@ -148,8 +151,10 @@ function processEndGame(winner) {
         manageGameEnd('draw');  
     }
     resetStored();
+    actionStop = true;
     setTimeout(displayIcons, 3000);
     setTimeout(toggleTurn, 3000);
+    setTimeout(function(){actionStop = false}, 3000);
 }
 
 function updateWins() {
