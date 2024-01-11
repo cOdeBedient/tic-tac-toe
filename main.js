@@ -67,10 +67,10 @@ function storeSquare(iD) {
         player.currentSquares[`squares${firstChar}`].push(iD);
         player.currentSquares[`squares${secondChar}`].push(iD);
         console.log('made it here! and iD is', iD)
-        if (iD === 'a1' || 'b2' || 'c3') {
+        if (iD === 'a1' || iD === 'b2' || iD === 'c3') {
             player.currentSquares.squaresDiagLR.push(iD);
         }
-        if (iD === 'a3' || 'b2' || 'c1') {
+        if (iD === 'a3' || iD === 'b2' || iD === 'c1') {
             player.currentSquares.squaresDiagRL.push(iD);
         }
     }
