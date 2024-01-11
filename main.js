@@ -117,9 +117,13 @@ function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
         if (player1.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = `${player1.token}`;
+        } else {
+            cells[i].innerHTML = '';
         }
         if (player2.currentSquares.all.includes(cells[i].id)) {
             cells[i].innerHTML = `${player2.token}`;
+        } else {
+            cells[i].innerHTML = '';
         }
     }
 }
@@ -135,9 +139,9 @@ function toggleTurn() {
 
 function displayTurn() {
     if (whosTurn === 'player1') {
-        whosTurn = 'player2';
+        statusTitle.innerHTML = `It's ${player1.id}'s turn`
     } else {
-        whosTurn = 'player1';
+        statusTitle.innerHTML = `It's ${player2.id}'s turn`
     }
 }
 
@@ -164,7 +168,30 @@ function displayWins() {
 }
 
 function resetStored() {
-    
+    player1.currentSquares = {
+        all: [],
+        squaresA: [],
+        squaresB: [],
+        squaresC: [],
+        squares1: [],
+        squares2: [],
+        squares3: [],
+        squaresDiagLR: [],
+        squaresDiagRL: []
+    }
+    player2.currentSquares = {
+        all: [],
+        squaresA: [],
+        squaresB: [],
+        squaresC: [],
+        squares1: [],
+        squares2: [],
+        squares3: [],
+        squaresDiagLR: [],
+        squaresDiagRL: []
+    }
+    availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
+    isOver = false;
 }
 
 function manageGameEnd(winner) {
@@ -177,5 +204,6 @@ function manageGameEnd(winner) {
 
 function resetBoard() {
     toggleTurn();
+    displayIcons();
 }
 
