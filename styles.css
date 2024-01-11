@@ -3,16 +3,21 @@ body {
     justify-content: center;
 }
 
-.side-column {
+aside {
  text-align: center;
  padding-top: 2%;
- background-color: green;
+ background-color: black;
  width: 25%;
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 3vw;
     margin-bottom: 2%;
+    color: white;
+}
+
+.wins {
+    margin-top: 1%;
 }
 
 main {
@@ -22,12 +27,9 @@ main {
     align-items: center;
 }
 
-.game-status {
-    margin-top: 20%;
-}
-
 h2 {
-    font-size: 2em;
+    font-size: 3vw;
+    margin-top: 20%;
 }
 
 .board-container {
@@ -39,18 +41,18 @@ h2 {
 .board {
     width: 100%;
     display: grid;
-    /* gap: 10px; */
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .cell {
     display: flex;
     aspect-ratio: 1;
-    border: 5px solid blue;
+    border: 5px solid black;
     box-sizing: border-box;
-    background-color: red;
+    background-color: white;
     align-items: center;
     justify-content: center;
+    font-size: 5vw;
 }
 
 #a1, #a2, #a3 {
