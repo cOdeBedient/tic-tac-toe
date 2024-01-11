@@ -148,7 +148,7 @@ function processEndGame(winner) {
     if (winner != 'draw'){
         updateWins();
         displayWins();
-        manageEndGame(winner);
+        manageGameEnd(winner);
         resetStored();
         setTimeout(resetBoard, 5000);
     } else {
@@ -197,7 +197,8 @@ function manageGameEnd(winner) {
     if (winner === 'draw') {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
-        statusTitle.innerHTML = `${whosTurn} won the game!`
+        var player = window[whosTurn];
+        statusTitle.innerHTML = `${player.token} won the game!`
     }
 }
 
