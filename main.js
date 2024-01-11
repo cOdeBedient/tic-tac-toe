@@ -1,7 +1,7 @@
 cells = document.querySelectorAll('.cell');
 board = document.querySelector('.board');
-p1Wins = document.querySelector('#p1-wins');
-p2Wins = document.querySelector('#p2-wins');
+p1Wins = document.querySelector('#p1Wins');
+p2Wins = document.querySelector('#p2Wins');
 statusTitle = document.querySelector('.game-status');
 
 
