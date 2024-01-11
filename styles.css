@@ -23,14 +23,12 @@ main {
 }
 
 .game-status {
-    margin-top: 15%;
+    margin-top: 20%;
 }
 
 h2 {
     font-size: 2em;
 }
-
-
 
 .board-container {
     width: 50%;

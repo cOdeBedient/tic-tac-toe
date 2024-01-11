@@ -47,6 +47,7 @@ var player2 = {
 
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
+isOver = false;
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
@@ -55,7 +56,9 @@ function manageBoardClick(iD) {
         updateAvailable(iD);
         displayIcons();
         checkForWin();
-        toggleTurn();
+        if (!isOver) {
+            toggleTurn();
+        }
     }
 }
 
@@ -87,7 +90,6 @@ function updateAvailable(iD) {
 function checkForWin() {
     var player = window[whosTurn];
     var winner;
-
     if (
         (player.currentSquares.squaresA.length === 3) ||
         (player.currentSquares.squaresB.length === 3) ||
@@ -102,10 +104,12 @@ function checkForWin() {
             winner = player.id;
             console.log(`${winner} wins`)
             processEndGame(winner);
+            isOver = true;
     } else if (availableSquares.length === 0) {
         winner = 'draw';
         console.log(`It's a ${winner}`)
         processEndGame(winner);
+        isOver = true;
     }
 }
 
@@ -129,13 +133,24 @@ function toggleTurn() {
     }
 }
 
-function processEndGame(result) {
-    if (result != draw){
+function displayTurn() {
+    if (whosTurn === 'player1') {
+        whosTurn = 'player2';
+    } else {
+        whosTurn = 'player1';
+    }
+}
+
+function processEndGame(winner) {
+    if (winner != 'draw'){
         updateWins();
         displayWins();
-
+        manageEndGame(winner);
+        resetStored();
+        setTimeout(resetBoard, 5000);
+    } else {
+        manageEndGame('draw');
     }
-    
 }
 
 function updateWins() {
@@ -144,24 +159,23 @@ function updateWins() {
 }
 
 function displayWins() {
-    
+        p1Wins.innerHTML = `${player1.wins} wins`;
+        p2Wins.innerHTML = `${player2.wins} wins`;
 }
 
 function resetStored() {
-
+    
 }
 
-function displayTurn() {
-
+function manageGameEnd(winner) {
+    if (winner === 'draw') {
+        statusTitle.innerHTML = "It's a Draw!"
+    } else {
+        statusTitle.innerHTML = `${whosTurn} won the game!`
+    }
 }
-
-function manageGameEnd() {
-
-}
-
-
 
 function resetBoard() {
-
+    toggleTurn();
 }
 
