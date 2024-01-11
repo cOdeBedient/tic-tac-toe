@@ -50,6 +50,7 @@ var player2 = {
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 var actionStop = false;
+cPUMode = true;
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
@@ -69,7 +70,6 @@ function storeSquare(iD) {
         player.currentSquares.all.push(iD);
         player.currentSquares[`squares${firstChar}`].push(iD);
         player.currentSquares[`squares${secondChar}`].push(iD);
-        console.log('made it here! and iD is', iD)
         if (iD === 'a1' || iD === 'b2' || iD === 'c3') {
             player.currentSquares.squaresDiagLR.push(iD);
         }
@@ -126,12 +126,22 @@ function displayIcons() {
 
 // can we use our math here? Is this DRY?
 function toggleTurn() {
-    if (whosTurn === 'player1') {
-        whosTurn = 'player2';
+    if (cPUMode) {
+        generateTurn();
     } else {
+        if (whosTurn === 'player1') {
+        whosTurn = 'player2';
+        } else {
         whosTurn = 'player1';
+        }
+        displayTurn();
     }
-    displayTurn();
+}
+
+function generateTurn() {
+    var randomCellsIndex = Math.random() * availableSquares.length;
+    var randomCell = availableSquares[randomCellsIndex];
+    manageBoardClick(randomCell);
 }
 
 function displayTurn() {
