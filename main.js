@@ -90,7 +90,6 @@ function updateAvailable(iD) {
 function checkForWin() {
     var player = window[whosTurn];
     var winner;
-    console.log('player.currentSquares.squaresDiagLR', player.currentSquares.squaresDiagLR);
     if (
         (player.currentSquares.squaresA.length === 3) ||
         (player.currentSquares.squaresB.length === 3) ||
@@ -132,8 +131,10 @@ function toggleTurn() {
             generateTurn();
         } else {
             whosTurn = 'player1';
-            }
-            displayTurn();
+        }
+        if (actionStop = false){
+        displayTurn();
+        }
     } else {
         if (whosTurn === 'player1') {
         whosTurn = 'player2';
@@ -147,7 +148,6 @@ function toggleTurn() {
 function generateTurn() {
     var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
     var randomCell = availableSquares[randomCellsIndex];
-    console.log(randomCell)
     manageBoardClick(randomCell);
 }
 
@@ -159,6 +159,7 @@ function displayTurn() {
     }
 }
 
+// let's make better names for process and manage end game
 function processEndGame(winner) {
     if (winner != 'draw'){
         updateWins();
@@ -171,6 +172,7 @@ function processEndGame(winner) {
     actionStop = true;
     setTimeout(displayIcons, 3000);
     setTimeout(toggleTurn, 3000);
+    setTimeout(displayTurn, 3000);
     setTimeout(function(){actionStop = false}, 3000);
 }
 
@@ -211,7 +213,6 @@ function resetStored() {
 }
 
 function manageGameEnd(winner) {
-    console.log(winner);
     if (winner === 'draw') {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
