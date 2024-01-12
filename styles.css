@@ -21,35 +21,67 @@ h3 {
 }
 
 main {
+    background-image: url('assets/Wizard-of-Oz-background-half-sat.jpg');
+    background-size: cover;
+    /* background-position: center; */
+    /* opacity: .5; */
+
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.full-sat {
+    background-image: url('./assets/Wizard-of-Oz-background.jpg');
+}
+
+.black-and-white {
+    background-image: url('./assets/Wizard-of-Oz-background-bw.jpg');
+}
+
 h2 {
     font-size: 3vw;
-    margin-top: 20%;
+    /* margin-top: 20%; */
+
+
+    margin-bottom: 0;
+    margin-top: 10%;
+    margin-right: 30%;
 }
 
 .board-container {
-    width: 50%;
-    height: 50%;
-    margin-top: 10%;
+    width: 45%;
+    height: 45%;
+    /* margin-top: 10%; */
+    margin-top: 2%;
+
+    margin-right: 30%;
 }
 
 .board {
     width: 100%;
     display: grid;
+    gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
+
+    opacity: 80%;
+
 }
 
 .cell {
+
     display: flex;
     aspect-ratio: 1;
     border: 5px solid black;
+
+    border: 5px;
+
     box-sizing: border-box;
     background-color: white;
+
+    
+
     align-items: center;
     justify-content: center;
     font-size: 5vw;
