@@ -50,6 +50,7 @@ var player2 = {
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 var actionStop = false;
+cPUMode = true;
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
@@ -69,7 +70,6 @@ function storeSquare(iD) {
         player.currentSquares.all.push(iD);
         player.currentSquares[`squares${firstChar}`].push(iD);
         player.currentSquares[`squares${secondChar}`].push(iD);
-        console.log('made it here! and iD is', iD)
         if (iD === 'a1' || iD === 'b2' || iD === 'c3') {
             player.currentSquares.squaresDiagLR.push(iD);
         }
@@ -90,7 +90,6 @@ function updateAvailable(iD) {
 function checkForWin() {
     var player = window[whosTurn];
     var winner;
-    console.log('player.currentSquares.squaresDiagLR', player.currentSquares.squaresDiagLR);
     if (
         (player.currentSquares.squaresA.length === 3) ||
         (player.currentSquares.squaresB.length === 3) ||
@@ -125,14 +124,189 @@ function displayIcons() {
 }
 
 // can we use our math here? Is this DRY?
+// where should generateTurn go???
+// I think toggleTurn and display turn should be pure, and both called in handleTurn
 function toggleTurn() {
-    if (whosTurn === 'player1') {
-        whosTurn = 'player2';
+    if (cPUMode) {
+        if (whosTurn === 'player1') {
+            whosTurn = 'player2';
+            displayTurn();
+            if (!actionStop) {
+                setTimeout(generateTurn, 500);
+            } else {
+                generateTurn();
+            }
+        } else {
+            whosTurn = 'player1';
+            displayTurn();
+        }
+        if (actionStop = false) {
+            displayTurn();
+        }
     } else {
+        if (whosTurn === 'player1') {
+        whosTurn = 'player2';
+        } else {
         whosTurn = 'player1';
+        }
+        displayTurn();
     }
-    displayTurn();
 }
+
+function generateTurn() {
+    var conditionMet = false;
+    if (player2.currentSquares.squares1.length === 2){
+        console.log('1 has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('1')){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player2.currentSquares.squares2.length === 2) {
+        console.log('2 has 2')
+            for (var i = 0; i < availableSquares.length; i++) {
+                if (availableSquares[i].includes('2') && conditionMet === false){
+                    conditionMet = true;
+                    manageBoardClick(availableSquares[i]);
+                }
+            }
+    }
+    if (player2.currentSquares.squares3.length === 2) {
+        console.log('3 has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('3') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player2.currentSquares.squaresA.length === 2) {
+        console.log('A has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('a') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player2.currentSquares.squaresB.length === 2) {
+        console.log('B has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('b') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player2.currentSquares.squaresC.length === 2) {
+        console.log('C has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('c') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player2.currentSquares.squaresDiagLR.length === 2) {
+        console.log('LR has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player2.currentSquares.squaresDiagRL.length === 2) {
+        console.log('RL has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+
+    if (player1.currentSquares.squares1.length === 2){
+        console.log('1 has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('1')){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player1.currentSquares.squares2.length === 2) {
+        console.log('2 has 2')
+            for (var i = 0; i < availableSquares.length; i++) {
+                if (availableSquares[i].includes('2') && conditionMet === false){
+                    conditionMet = true;
+                    manageBoardClick(availableSquares[i]);
+                }
+            }
+    }
+    if (player1.currentSquares.squares3.length === 2) {
+        console.log('3 has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('3') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player1.currentSquares.squaresA.length === 2) {
+        console.log('A has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('a') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player1.currentSquares.squaresB.length === 2) {
+        console.log('B has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('b') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player1.currentSquares.squaresC.length === 2) {
+        console.log('C has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i].includes('c') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player1.currentSquares.squaresDiagLR.length === 2) {
+        console.log('LR has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (player1.currentSquares.squaresDiagRL.length === 2) {
+        console.log('RL has 2')
+        for (var i = 0; i < availableSquares.length; i++) {
+            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && conditionMet === false){
+                conditionMet = true;
+                manageBoardClick(availableSquares[i]);
+            }
+        }
+    }
+    if (!conditionMet && actionStop === false) {
+        var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
+        var randomCell = availableSquares[randomCellsIndex];
+        manageBoardClick(randomCell);
+    }
+}
+
 
 function displayTurn() {
     if (whosTurn === 'player1') {
@@ -142,6 +316,7 @@ function displayTurn() {
     }
 }
 
+// let's make better names for process and manage end game
 function processEndGame(winner) {
     if (winner != 'draw'){
         updateWins();
@@ -152,9 +327,10 @@ function processEndGame(winner) {
     }
     resetStored();
     actionStop = true;
-    setTimeout(displayIcons, 3000);
-    setTimeout(toggleTurn, 3000);
-    setTimeout(function(){actionStop = false}, 3000);
+    setTimeout(displayIcons, 2000);
+    setTimeout(toggleTurn, 2000);
+    setTimeout(displayTurn, 2000);
+    setTimeout(function(){actionStop = false}, 2000);
 }
 
 function updateWins() {
@@ -194,7 +370,6 @@ function resetStored() {
 }
 
 function manageGameEnd(winner) {
-    console.log(winner);
     if (winner === 'draw') {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
