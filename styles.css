@@ -10,6 +10,10 @@ aside {
  width: 25%;
 }
 
+img {
+    height: 25%;
+}
+
 h3 {
     font-size: 3vw;
     margin-bottom: 2%;
