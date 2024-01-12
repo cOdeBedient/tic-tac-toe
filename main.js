@@ -84,6 +84,13 @@ function storeSquare(iD) {
 function updateAvailable(iD) {
     for (i = 0; i < availableSquares.length; i++) {
         if (iD === availableSquares[i]) {
+            if (whosTurn === 'player1'){
+                var dogBark = new Audio('./assets/dog-bark.mp3');
+                dogBark.play();
+            } else {
+                var witchCackle = new Audio('./assets/witch-cackle.ogg');
+                witchCackle.play();
+            }
             availableSquares.splice(i, 1);
         }
     }
