@@ -124,16 +124,24 @@ function displayIcons() {
 }
 
 // can we use our math here? Is this DRY?
+// where should generateTurn go???
+// I think toggleTurn and display turn should be pure, and both called in handleTurn
 function toggleTurn() {
     if (cPUMode) {
         if (whosTurn === 'player1') {
             whosTurn = 'player2';
-            generateTurn();
+            displayTurn();
+            if (!actionStop) {
+                setTimeout(generateTurn, 500);
+            } else {
+                generateTurn();
+            }
         } else {
             whosTurn = 'player1';
+            displayTurn();
         }
-        if (actionStop = false){
-        displayTurn();
+        if (actionStop = false) {
+            displayTurn();
         }
     } else {
         if (whosTurn === 'player1') {
@@ -146,10 +154,86 @@ function toggleTurn() {
 }
 
 function generateTurn() {
-    var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
-    var randomCell = availableSquares[randomCellsIndex];
-    manageBoardClick(randomCell);
+    // var conditionMet = false;
+    // if (player1.currentSquares.squares1.length === 2){
+    //     console.log('1 has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if (availableSquares[i].includes('1')){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (player1.currentSquares.squares2.length === 2) {
+    //     console.log('2 has 2')
+    //         for (var i = 0; i < availableSquares.length; i++) {
+    //             if (availableSquares[i].includes('2') && conditionMet === false){
+    //                 conditionMet = true;
+    //                 manageBoardClick(availableSquares[i]);
+    //             }
+    //         }
+    // }
+    // if (player1.currentSquares.squares3.length === 2) {
+    //     console.log('3 has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if (availableSquares[i].includes('3') && conditionMet === false){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (player1.currentSquares.squaresA.length === 2) {
+    //     console.log('A has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if (availableSquares[i].includes('a') && conditionMet === false){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (player1.currentSquares.squaresB.length === 2) {
+    //     console.log('B has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if (availableSquares[i].includes('b') && conditionMet === false){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (player1.currentSquares.squaresC.length === 2) {
+    //     console.log('C has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if (availableSquares[i].includes('c') && conditionMet === false){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (player1.currentSquares.squaresDiagLR.length === 2) {
+    //     console.log('LR has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && conditionMet === false){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (player1.currentSquares.squaresDiagRL.length === 2) {
+    //     console.log('RL has 2')
+    //     for (var i = 0; i < availableSquares.length; i++) {
+    //         if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && conditionMet === false){
+    //             conditionMet = true;
+    //             manageBoardClick(availableSquares[i]);
+    //         }
+    //     }
+    // }
+    // if (!conditionMet) {
+        var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
+        var randomCell = availableSquares[randomCellsIndex];
+        manageBoardClick(randomCell);
+    // }
 }
+
 
 function displayTurn() {
     if (whosTurn === 'player1') {
