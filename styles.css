@@ -10,9 +10,13 @@ aside {
  width: 25%;
 }
 
-img {
+.player-icon {
     height: 25%;
 }
+
+/* .board-icon {
+    object-fit: contain;
+} */
 
 h3 {
     font-size: 3vw;
