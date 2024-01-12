@@ -1,8 +1,9 @@
-cells = document.querySelectorAll('.cell');
-board = document.querySelector('.board');
-p1Wins = document.querySelector('#p1Wins');
-p2Wins = document.querySelector('#p2Wins');
-statusTitle = document.querySelector('.game-status');
+var cells = document.querySelectorAll('.cell');
+var board = document.querySelector('.board');
+var p1Wins = document.querySelector('#p1Wins');
+var p2Wins = document.querySelector('#p2Wins');
+var statusTitle = document.querySelector('.game-status');
+var mainField = document.querySelector('main');
 
 
 board.addEventListener('click', function(event) {
@@ -373,6 +374,17 @@ function manageGameEnd(winner) {
     if (winner === 'draw') {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
+        if (cPUMode){
+            if (whosTurn === 'player1'){
+                console.log('main:', mainField);
+                mainField.classList.add('saturate');
+                setTimeout(function() {main.classList.remove('saturate')}, 2000);
+            } else {
+                console.log('main:', mainField);
+                mainField.classList.add('desaturate');
+                setTimeout(function() {main.classList.remove('desaturate')}, 2000);
+            }
+        }
         var player = window[whosTurn];
         statusTitle.innerHTML = `${player.token} won the game!`
     }

@@ -25,7 +25,8 @@ h3 {
 }
 
 main {
-    background-image: url('assets/Wizard-of-Oz-background-half-sat.jpg');
+    background-image: url('./assets/Wizard-of-Oz-background.jpg');
+    filter: saturate(50%);
     background-size: cover;
     /* background-position: center; */
     /* opacity: .5; */
@@ -36,12 +37,38 @@ main {
     align-items: center;
 }
 
-.full-sat {
-    background-image: url('./assets/Wizard-of-Oz-background.jpg');
+.desaturate {
+    filter: saturate(0%);
+    animation-name: saturate;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3s;
+    animation-delay: 2s;
 }
 
-.black-and-white {
-    background-image: url('./assets/Wizard-of-Oz-background-bw.jpg');
+.saturate {
+    filter: saturate(100%);
+    animation-name: desaturate;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3s;
+    animation-delay: 2s;
+}
+
+@keyframes saturate {
+    0% {
+        filter: saturate(0%);
+    }
+    100% {
+        filter: saturate(50%);
+    }
+}
+
+@keyframes desaturate {
+    0% {
+        filter: saturate(100%);
+    }
+    100% {
+        filter: saturate(50%);
+    }
 }
 
 h2 {
