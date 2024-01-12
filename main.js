@@ -378,11 +378,11 @@ function manageGameEnd(winner) {
             if (whosTurn === 'player1'){
                 console.log('main:', mainField);
                 mainField.classList.add('saturate');
-                setTimeout(function() {main.classList.remove('saturate')}, 2000);
+                setTimeout(function() {mainField.classList.remove('saturate')}, 4000);
             } else {
                 console.log('main:', mainField);
                 mainField.classList.add('desaturate');
-                setTimeout(function() {main.classList.remove('desaturate')}, 2000);
+                setTimeout(function() {mainField.classList.remove('desaturate')}, 4000);
             }
         }
         var player = window[whosTurn];
