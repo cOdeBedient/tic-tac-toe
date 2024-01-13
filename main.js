@@ -353,13 +353,13 @@ function processEndGame(winner) {
     }
     resetStored();
     actionStop = true;
-    setTimeout(displayIcons, 2000);
-    setTimeout(function(){actionStop = false}, 2000);
+    setTimeout(displayIcons, 3000);
+    setTimeout(function(){actionStop = false}, 3000);
     if (cPUMode){
-        setTimeout(toggleTurn, 3000);
+        setTimeout(toggleTurn, 4000);
         // setTimeout(displayTurn, 2000);
     } else {
-        setTimeout(toggleTurn, 2000);
+        setTimeout(toggleTurn, 3000);
         // setTimeout(displayTurn, 2000);
     }
     
@@ -408,6 +408,8 @@ function manageGameEnd(winner) {
         var player = window[whosTurn];
         if (cPUMode){
             if (whosTurn === 'player1'){
+                var africaSong = new Audio('./assets/africa.mp3');
+                africaSong.play();
                 mainField.classList.add('saturate');
                 setTimeout(function() {mainField.classList.remove('saturate')}, 4000);
             } else {
