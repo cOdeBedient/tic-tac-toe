@@ -1,9 +1,13 @@
 var cells = document.querySelectorAll('.cell');
 var board = document.querySelector('.board');
+var p1Icon = document.querySelector('.p1Icon');
+var p2Icon = document.querySelector('p2Icon'); 
 var p1Wins = document.querySelector('#p1Wins');
 var p2Wins = document.querySelector('#p2Wins');
 var statusTitle = document.querySelector('.game-status');
 var mainField = document.querySelector('main');
+var boardContainer = document.querySelector('.board-container');
+var toggleButton = document.querySelector('.toggle-modes');
 
 
 board.addEventListener('click', function(event) {
@@ -53,7 +57,7 @@ var player2 = {
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 var actionStop = false;
-cPUMode = true;
+cPUMode = false;
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {

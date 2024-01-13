@@ -2,13 +2,15 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <aside class="left-column">
-        <!-- <h3>X</h3> -->
-        <img class='player-icon' src="./assets/toto.png" alt="toto">
+    <aside>
+        <div class="p1-icon">
+            <h3>X</h3>
+            <!-- <img class='player-icon' src="./assets/toto.png" alt="toto"> -->
+        </div>
         <h3 class="wins" id="p1Wins">0 wins<h3>
     </aside>
     <main>
-        <h2 class="game-status">It's Toto's turn</h2>
+        <h2 class="game-status">It's <span id="player-turn">X</span>'s turn</h2>
         <div class="board-container">
             <section class="board">
                 <div class="cell" id="a1"></div>
@@ -24,9 +26,14 @@
         </div>
     </main>
     <aside class="right-column">
-        <!-- <h3>O</h3> -->
-        <img class='player-icon' src="./assets/wicked-witch.png" alt="wicked-witch">
-        <h3 class="wins" id="p2Wins">0 wins<h3>
+        <div class="p2-details">
+            <div class="p2-icon">
+                <h3>O</h3>
+                <!-- <img class='player-icon' src="./assets/wicked-witch.png" alt="wicked-witch"> -->
+            </div>
+            <h3 class="wins" id="p2Wins">0 wins<h3>
+        </div>
+        <img class='toggle-modes' src="./assets/ruby-slippers.png" alt="wicked-witch">
     </aside>
     <script src="main.js"></script>
 </body>
