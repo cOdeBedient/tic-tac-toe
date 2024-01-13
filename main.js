@@ -1,8 +1,9 @@
-cells = document.querySelectorAll('.cell');
-board = document.querySelector('.board');
-p1Wins = document.querySelector('#p1Wins');
-p2Wins = document.querySelector('#p2Wins');
-statusTitle = document.querySelector('.game-status');
+var cells = document.querySelectorAll('.cell');
+var board = document.querySelector('.board');
+var p1Wins = document.querySelector('#p1Wins');
+var p2Wins = document.querySelector('#p2Wins');
+var statusTitle = document.querySelector('.game-status');
+var mainField = document.querySelector('main');
 
 
 board.addEventListener('click', function(event) {
@@ -15,8 +16,9 @@ board.addEventListener('click', function(event) {
 
 var player1 = {
     id: 'Toto',
-    token : 'X',
-    wins : 0,
+    token: 'X',
+    image: './assets/toto.png',
+    wins: 0,
     currentSquares: {
         all: [],
         squaresA: [],
@@ -31,8 +33,9 @@ var player1 = {
 }
 
 var player2 = {
-    id: 'Wicked Witch',
+    id: 'Witch',
     token: 'O',
+    image: './assets/wicked-witch.png',
     wins: 0,
     currentSquares: {
         all: [],
@@ -81,6 +84,13 @@ function storeSquare(iD) {
 function updateAvailable(iD) {
     for (i = 0; i < availableSquares.length; i++) {
         if (iD === availableSquares[i]) {
+            if (whosTurn === 'player1'){
+                var dogBark = new Audio('./assets/dog-bark.mp3');
+                dogBark.play();
+            } else {
+                var witchCackle = new Audio('./assets/witch-cackle.ogg');
+                witchCackle.play();
+            }
             availableSquares.splice(i, 1);
         }
     }
@@ -115,10 +125,18 @@ function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].innerHTML = '';
         if (player1.currentSquares.all.includes(cells[i].id)) {
+            // if(cPUMode){
+            //     cells[i].innerHTML = `<img class="board-icon cell" src="${player1.image}" alt="toto">`;
+            // } else {
             cells[i].innerHTML = `${player1.token}`;
+            // }
         }
         if (player2.currentSquares.all.includes(cells[i].id)) {
+            // if (cPUMode){
+            //     cells[i].innerHTML = `<img class="board-icon cell" src="${player2.image}" alt="wicked-witch">`;
+            // } else {
             cells[i].innerHTML = `${player2.token}`;
+            // }
         }
     }
 }
@@ -132,7 +150,7 @@ function toggleTurn() {
             whosTurn = 'player2';
             displayTurn();
             if (!actionStop) {
-                setTimeout(generateTurn, 500);
+                setTimeout(generateTurn, 750);
             } else {
                 generateTurn();
             }
@@ -310,9 +328,17 @@ function generateTurn() {
 
 function displayTurn() {
     if (whosTurn === 'player1') {
-        statusTitle.innerHTML = `It's ${player1.token}'s turn`
+        if (cPUMode){
+        statusTitle.innerHTML = `It's ${player1.id}'s turn`
+        } else {
+            statusTitle.innerHTML = `It's ${player1.token}'s turn`
+        }
     } else {
-        statusTitle.innerHTML = `It's ${player2.token}'s turn`
+        if (cPUMode) {
+            statusTitle.innerHTML = `It's ${player2.id}'s turn`
+        } else {
+            statusTitle.innerHTML = `It's ${player2.token}'s turn`
+        } 
     }
 }
 
@@ -327,10 +353,16 @@ function processEndGame(winner) {
     }
     resetStored();
     actionStop = true;
-    setTimeout(displayIcons, 2000);
-    setTimeout(toggleTurn, 2000);
-    setTimeout(displayTurn, 2000);
-    setTimeout(function(){actionStop = false}, 2000);
+    setTimeout(displayIcons, 3000);
+    setTimeout(function(){actionStop = false}, 3000);
+    if (cPUMode){
+        setTimeout(toggleTurn, 4000);
+        // setTimeout(displayTurn, 2000);
+    } else {
+        setTimeout(toggleTurn, 3000);
+        // setTimeout(displayTurn, 2000);
+    }
+    
 }
 
 function updateWins() {
@@ -374,6 +406,22 @@ function manageGameEnd(winner) {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
         var player = window[whosTurn];
+        if (cPUMode){
+            if (whosTurn === 'player1'){
+                var africaSong = new Audio('./assets/africa.mp3');
+                africaSong.play();
+                mainField.classList.add('saturate');
+                setTimeout(function() {mainField.classList.remove('saturate')}, 4000);
+            } else {
+                var witchyWoman = new Audio('./assets/witchy-woman.mp3');
+                witchyWoman.play();
+                mainField.classList.add('desaturate');
+                setTimeout(function() {mainField.classList.remove('desaturate')}, 4000);
+            }
+            statusTitle.innerHTML = `${player.id} won the game!`
+        } else {
+        var player = window[whosTurn];
         statusTitle.innerHTML = `${player.token} won the game!`
+        }
     }
 }

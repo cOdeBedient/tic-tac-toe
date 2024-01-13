@@ -10,6 +10,14 @@ aside {
  width: 25%;
 }
 
+.player-icon {
+    height: 25%;
+}
+
+/* .board-icon {
+    object-fit: contain;
+} */
+
 h3 {
     font-size: 3vw;
     margin-bottom: 2%;
@@ -21,35 +29,94 @@ h3 {
 }
 
 main {
+    background-image: url('./assets/Wizard-of-Oz-background.jpg');
+    filter: saturate(50%);
+    background-size: cover;
+    /* background-position: center; */
+    /* opacity: .5; */
+
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.desaturate {
+    filter: saturate(0%);
+    animation-name: saturate;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3s;
+    animation-delay: 2s;
+}
+
+.saturate {
+    filter: saturate(100%);
+    animation-name: desaturate;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3s;
+    animation-delay: 2s;
+}
+
+@keyframes saturate {
+    0% {
+        filter: saturate(0%);
+    }
+    100% {
+        filter: saturate(50%);
+    }
+}
+
+@keyframes desaturate {
+    0% {
+        filter: saturate(100%);
+    }
+    100% {
+        filter: saturate(50%);
+    }
+}
+
 h2 {
     font-size: 3vw;
-    margin-top: 20%;
+    /* margin-top: 20%; */
+
+
+    margin-bottom: 0;
+    margin-top: 10%;
+    margin-right: 30%;
 }
 
 .board-container {
-    width: 50%;
-    height: 50%;
-    margin-top: 10%;
+    width: 45%;
+    height: 45%;
+    /* margin-top: 10%; */
+    margin-top: 2%;
+
+    margin-right: 30%;
 }
 
 .board {
     width: 100%;
     display: grid;
+    gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
+
+    opacity: 80%;
+
 }
 
 .cell {
+
     display: flex;
     aspect-ratio: 1;
     border: 5px solid black;
+
+    border: 5px;
+
     box-sizing: border-box;
     background-color: white;
+
+    
+
     align-items: center;
     justify-content: center;
     font-size: 5vw;
