@@ -413,6 +413,8 @@ function manageGameEnd(winner) {
                 mainField.classList.add('saturate');
                 setTimeout(function() {mainField.classList.remove('saturate')}, 4000);
             } else {
+                var witchyWoman = new Audio('./assets/witchy-woman.mp3');
+                witchyWoman.play();
                 mainField.classList.add('desaturate');
                 setTimeout(function() {mainField.classList.remove('desaturate')}, 4000);
             }
