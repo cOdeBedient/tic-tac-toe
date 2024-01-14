@@ -1,7 +1,7 @@
 var cells = document.querySelectorAll('.cell');
 var board = document.querySelector('.board');
-var p1Icon = document.querySelector('.p1Icon');
-var p2Icon = document.querySelector('p2Icon'); 
+var p1Icon = document.querySelector('.p1-icon');
+var p2Icon = document.querySelector('.p2-icon'); 
 var p1Wins = document.querySelector('#p1Wins');
 var p2Wins = document.querySelector('#p2Wins');
 var statusTitle = document.querySelector('.game-status');
@@ -70,6 +70,35 @@ function toggleModes(){
     resetWins();
     displayWins();
     displayTurn();
+    toggleTheme();
+}
+
+function toggleTheme() {
+    if (cPUMode) {
+        p1Icon.innerHTML = '<img class="player1-icon" src="./assets/toto.png" alt="toto"></img>';
+        p2Icon.innerHTML = '<img class="player2-icon" src="./assets/wicked-witch.png" alt="wicked-witch"></img>';
+        statusTitle.innerHTML = `It's Toto's turn`;
+        mainField.classList.add('main-oz');
+        statusTitle.classList.add('game-status-oz');
+        boardContainer.classList.add('board-container-oz');
+        mainField.classList.add('main-oz');
+        board.classList.add('board-oz');
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].classList.add('cell-oz');
+        }
+    } else {
+        p1Icon.innerHTML = '<h3>X</h3>';
+        p2Icon.innerHTML = '<h3>O<h3>';
+        statusTitle.innerHTML = `It's X's turn`;
+        mainField.classList.remove('main-oz');
+        statusTitle.classList.remove('game-status-oz');
+        boardContainer.classList.remove('board-comtainer-oz');
+        mainField.classList.remove('main-oz');
+        board.classList.remove('board-oz');
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].classList.remove('cell-oz');
+        }
+    }
 }
 
 function resetWins() {

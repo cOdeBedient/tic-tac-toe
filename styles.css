@@ -17,7 +17,11 @@ aside {
     justify-content: space-between;
 }
 
-.player-icon {
+.player1-icon {
+    height: 22%;
+}
+
+.player2-icon {
     height: 25%;
 }
 
@@ -33,8 +37,8 @@ h3 {
 
 .toggle-modes {
     margin-left: 40%;
-    margin-bottom: 10%;
-    width: 30%;
+    margin-bottom: 15%;
+    width: 20%;
     cursor: pointer;
 }
 
@@ -42,7 +46,8 @@ main {
     width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
+    filter: saturate(50%);
 }
 
 .desaturate {
@@ -125,11 +130,10 @@ h2 {
 
 .main-oz {
     background-image: url('./assets/Wizard-of-Oz-background.jpg');
-    filter: saturate(50%);
     background-size: cover;
 }
 
-.h2-oz {
+.game-status-oz {
     margin-bottom: 0;
     margin-top: 10%;
     margin-right: 30%;
