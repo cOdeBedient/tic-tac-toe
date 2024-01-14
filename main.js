@@ -17,6 +17,8 @@ board.addEventListener('click', function(event) {
     }
 });
 
+toggleButton.addEventListener('click', toggleModes);
+
 
 var player1 = {
     id: 'Toto',
@@ -58,6 +60,22 @@ availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 var actionStop = false;
 cPUMode = false;
+
+function toggleModes(){
+    cPUMode = !cPUMode;
+    whosTurn = 'player1';
+    actionStop = false;
+    resetStored();
+    displayIcons();
+    resetWins();
+    displayWins();
+    displayTurn();
+}
+
+function resetWins() {
+    player1.wins = 0;
+    player2.wins = 0;
+}
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
