@@ -4,19 +4,37 @@ body {
 }
 
 aside {
- text-align: center;
- padding-top: 2%;
- background-color: black;
- width: 25%;
+    text-align: center;
+    padding-top: 2%;
+    background-color: black;
+    width: 25%;
+
+    /* border: 3px solid red; */
 }
 
-.player-icon {
-    height: 25%;
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* .board-icon {
-    object-fit: contain;
-} */
+.player1-icon {
+    width: 50%;
+}
+
+.player2-icon {
+    width: 55%;
+    /* border: 3px solid blue; */
+}
+
+.p2-icon {
+    /* border: 3px solid yellow; */
+}
+
+.p2-details {
+    /* border: 3px solid pink; */
+}
 
 h3 {
     font-size: 3vw;
@@ -28,17 +46,31 @@ h3 {
     margin-top: 1%;
 }
 
-main {
-    background-image: url('./assets/Wizard-of-Oz-background.jpg');
-    filter: saturate(50%);
-    background-size: cover;
-    /* background-position: center; */
-    /* opacity: .5; */
+.toggle-region {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10%;
+    margin-right: 10%;
+}
 
+p {
+    color: white;
+    margin-right: 4%;
+}
+
+.toggle-button {
+
+    width: 20%;
+    cursor: pointer;
+}
+
+main {
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    filter: saturate(50%);
 }
 
 .desaturate {
@@ -77,46 +109,27 @@ main {
 
 h2 {
     font-size: 3vw;
-    /* margin-top: 20%; */
-
-
-    margin-bottom: 0;
-    margin-top: 10%;
-    margin-right: 30%;
+    margin-top: 15%;
 }
 
 .board-container {
-    width: 45%;
-    height: 45%;
-    /* margin-top: 10%; */
-    margin-top: 2%;
-
-    margin-right: 30%;
+    width: 50%;
+    height: 50%;
+    margin-top: 10%;   
 }
 
 .board {
     width: 100%;
     display: grid;
-    gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
-
-    opacity: 80%;
-
 }
 
 .cell {
-
     display: flex;
     aspect-ratio: 1;
-    border: 5px solid black;
-
-    border: 5px;
-
+    border: 6px solid black;
     box-sizing: border-box;
     background-color: white;
-
-    
-
     align-items: center;
     justify-content: center;
     font-size: 5vw;
@@ -136,4 +149,35 @@ h2 {
 
 #a3, #b3, #c3 {
     border-right: 0px;
+}
+
+.main-oz {
+    background-image: url('./assets/Wizard-of-Oz-background.jpg');
+    background-size: cover;
+}
+
+.game-status-oz {
+    margin-bottom: 0;
+    margin-top: 10%;
+    margin-right: 30%;
+}
+
+.board-container-oz {
+    width: 45%;
+    height: 45%;
+    margin-top: 2%;
+    margin-right: 30%;
+}
+
+.board-oz {
+    opacity: 80%;
+    gap: 10px;
+}
+
+.cell-oz {
+    border: 5px;
+}
+
+.hidden {
+    opacity: 0;
 }

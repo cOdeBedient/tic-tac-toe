@@ -1,11 +1,17 @@
+// Query Selectors
 var cells = document.querySelectorAll('.cell');
 var board = document.querySelector('.board');
+var p1Icon = document.querySelector('.p1-icon');
+var p2Icon = document.querySelector('.p2-icon'); 
 var p1Wins = document.querySelector('#p1Wins');
 var p2Wins = document.querySelector('#p2Wins');
 var statusTitle = document.querySelector('.game-status');
 var mainField = document.querySelector('main');
+var boardContainer = document.querySelector('.board-container');
+var toggleButton = document.querySelector('.toggle-button');
+var toggleText = document.querySelector('p');
 
-
+//Event Listeners
 board.addEventListener('click', function(event) {
     if (!actionStop){
         var currentID = event.target.id;
@@ -13,7 +19,9 @@ board.addEventListener('click', function(event) {
     }
 });
 
+toggleButton.addEventListener('click', toggleModes);
 
+// Global Variables
 var player1 = {
     id: 'Toto',
     token: 'X',
@@ -31,7 +39,6 @@ var player1 = {
         squaresDiagRL: []
     }
 }
-
 var player2 = {
     id: 'Witch',
     token: 'O',
@@ -49,11 +56,64 @@ var player2 = {
         squaresDiagRL: []
     }
 }
-
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 var actionStop = false;
-cPUMode = true;
+cPUMode = false;
+
+// Functions
+function toggleModes(){
+    cPUMode = !cPUMode;
+    whosTurn = 'player1';
+    actionStop = false;
+    resetStored();
+    displayIcons();
+    resetWins();
+    displayWins();
+    displayTurn();
+    toggleTheme();
+}
+
+function toggleTheme() {
+    if (cPUMode) {
+        p1Icon.innerHTML = '<img class="player1-icon" src="./assets/toto.png" alt="toto"></img>';
+        p2Icon.innerHTML = '<img class="player2-icon" src="./assets/wicked-witch.png" alt="wicked-witch"></img>';
+        statusTitle.innerHTML = `It's Toto's turn`;
+        mainField.classList.add('main-oz');
+        statusTitle.classList.add('game-status-oz');
+        boardContainer.classList.add('board-container-oz');
+        mainField.classList.add('main-oz');
+        board.classList.add('board-oz');
+        toggleButton.src = "./assets/ttt-board.png";
+        toggleText.innerText = 'return to original ->';
+        player1.token = 'T';
+        player2. token = 'W';
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].classList.add('cell-oz');
+        }
+    } else {
+        p1Icon.innerHTML = '<h3>X</h3>';
+        p2Icon.innerHTML = '<h3>O<h3>';
+        statusTitle.innerHTML = `It's X's turn`;
+        mainField.classList.remove('main-oz');
+        statusTitle.classList.remove('game-status-oz');
+        boardContainer.classList.remove('board-container-oz');
+        mainField.classList.remove('main-oz');
+        board.classList.remove('board-oz');
+        toggleButton.src = "./assets/ruby-slippers.png";
+        toggleText.innerText = 'to tic-tac-toto ->'
+        player1.token = 'X';
+        player2. token = 'O';
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].classList.remove('cell-oz');
+        }
+    }
+}
+
+function resetWins() {
+    player1.wins = 0;
+    player2.wins = 0;
+}
 
 // maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
@@ -84,19 +144,21 @@ function storeSquare(iD) {
 function updateAvailable(iD) {
     for (i = 0; i < availableSquares.length; i++) {
         if (iD === availableSquares[i]) {
-            if (whosTurn === 'player1'){
-                var dogBark = new Audio('./assets/dog-bark.mp3');
-                dogBark.play();
-            } else {
-                var witchCackle = new Audio('./assets/witch-cackle.ogg');
-                witchCackle.play();
+            if (cPUMode) {
+                if (whosTurn === 'player1'){
+                    var dogBark = new Audio('./assets/dog-bark.mp3');
+                    dogBark.play();
+                } else {
+                    var witchCackle = new Audio('./assets/witch-cackle.ogg');
+                    witchCackle.play();
+                }
             }
             availableSquares.splice(i, 1);
         }
     }
 }
 
-//check for draw a different function??
+//check for draw a different function?? Is toggleTurn weird here?
 function checkForWin() {
     var player = window[whosTurn];
     var winner;
@@ -121,6 +183,7 @@ function checkForWin() {
     }
 }
 
+// get rid of the grid?
 function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].innerHTML = '';
@@ -325,7 +388,6 @@ function generateTurn() {
     }
 }
 
-
 function displayTurn() {
     if (whosTurn === 'player1') {
         if (cPUMode){
@@ -357,12 +419,9 @@ function processEndGame(winner) {
     setTimeout(function(){actionStop = false}, 3000);
     if (cPUMode){
         setTimeout(toggleTurn, 4000);
-        // setTimeout(displayTurn, 2000);
     } else {
         setTimeout(toggleTurn, 3000);
-        // setTimeout(displayTurn, 2000);
-    }
-    
+    } 
 }
 
 function updateWins() {
