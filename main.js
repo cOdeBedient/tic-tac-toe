@@ -102,7 +102,7 @@ function toggleTheme() {
         mainField.classList.remove('main-oz');
         board.classList.remove('board-oz');
         toggleButton.src = "./assets/ruby-slippers.png";
-        toggleText.innerText = 'to tic-tac-toto ->'
+        toggleText.innerText = 'enter tic-tac-toto ->'
         player1.token = 'X';
         player2. token = 'O';
         for (var i = 0; i < cells.length; i++) {
@@ -237,12 +237,13 @@ function toggleTurn() {
     }
 }
 
+// change conditionMet === false to !conditionMet
 function generateTurn() {
     var conditionMet = false;
     if (player2.currentSquares.squares1.length === 2){
         console.log('1 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('1')){
+            if (availableSquares[i].includes('1') && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -251,7 +252,7 @@ function generateTurn() {
     if (player2.currentSquares.squares2.length === 2) {
         console.log('2 has 2')
             for (var i = 0; i < availableSquares.length; i++) {
-                if (availableSquares[i].includes('2') && conditionMet === false){
+                if (availableSquares[i].includes('2') && !conditionMet && !actionStop){
                     conditionMet = true;
                     manageBoardClick(availableSquares[i]);
                 }
@@ -260,7 +261,7 @@ function generateTurn() {
     if (player2.currentSquares.squares3.length === 2) {
         console.log('3 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('3') && conditionMet === false){
+            if (availableSquares[i].includes('3') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -269,7 +270,7 @@ function generateTurn() {
     if (player2.currentSquares.squaresA.length === 2) {
         console.log('A has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('a') && conditionMet === false){
+            if (availableSquares[i].includes('a') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -278,7 +279,7 @@ function generateTurn() {
     if (player2.currentSquares.squaresB.length === 2) {
         console.log('B has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('b') && conditionMet === false){
+            if (availableSquares[i].includes('b') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -287,7 +288,7 @@ function generateTurn() {
     if (player2.currentSquares.squaresC.length === 2) {
         console.log('C has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('c') && conditionMet === false){
+            if (availableSquares[i].includes('c') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -296,7 +297,7 @@ function generateTurn() {
     if (player2.currentSquares.squaresDiagLR.length === 2) {
         console.log('LR has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && conditionMet === false){
+            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -305,7 +306,7 @@ function generateTurn() {
     if (player2.currentSquares.squaresDiagRL.length === 2) {
         console.log('RL has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && conditionMet === false){
+            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -315,7 +316,7 @@ function generateTurn() {
     if (player1.currentSquares.squares1.length === 2){
         console.log('1 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('1')){
+            if (availableSquares[i].includes('1') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -324,7 +325,7 @@ function generateTurn() {
     if (player1.currentSquares.squares2.length === 2) {
         console.log('2 has 2')
             for (var i = 0; i < availableSquares.length; i++) {
-                if (availableSquares[i].includes('2') && conditionMet === false){
+                if (availableSquares[i].includes('2') && !conditionMet && !actionStop){
                     conditionMet = true;
                     manageBoardClick(availableSquares[i]);
                 }
@@ -333,7 +334,7 @@ function generateTurn() {
     if (player1.currentSquares.squares3.length === 2) {
         console.log('3 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('3') && conditionMet === false){
+            if (availableSquares[i].includes('3') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -342,7 +343,7 @@ function generateTurn() {
     if (player1.currentSquares.squaresA.length === 2) {
         console.log('A has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('a') && conditionMet === false){
+            if (availableSquares[i].includes('a') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -351,7 +352,7 @@ function generateTurn() {
     if (player1.currentSquares.squaresB.length === 2) {
         console.log('B has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('b') && conditionMet === false){
+            if (availableSquares[i].includes('b') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -360,7 +361,7 @@ function generateTurn() {
     if (player1.currentSquares.squaresC.length === 2) {
         console.log('C has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('c') && conditionMet === false){
+            if (availableSquares[i].includes('c') && !conditionMet && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -369,7 +370,7 @@ function generateTurn() {
     if (player1.currentSquares.squaresDiagLR.length === 2) {
         console.log('LR has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && conditionMet === false){
+            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet  && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -378,7 +379,7 @@ function generateTurn() {
     if (player1.currentSquares.squaresDiagRL.length === 2) {
         console.log('RL has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && conditionMet === false){
+            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet  && !actionStop){
                 conditionMet = true;
                 manageBoardClick(availableSquares[i]);
             }
@@ -482,8 +483,8 @@ function manageGameEnd(winner) {
             }
             statusTitle.innerHTML = `${player.id} won the game!`
         } else {
-        var player = window[whosTurn];
-        statusTitle.innerHTML = `${player.token} won the game!`
+            var player = window[whosTurn];
+            statusTitle.innerHTML = `${player.token} won the game!`
         }
     }
 }
