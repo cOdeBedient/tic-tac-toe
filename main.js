@@ -7,7 +7,8 @@ var p2Wins = document.querySelector('#p2Wins');
 var statusTitle = document.querySelector('.game-status');
 var mainField = document.querySelector('main');
 var boardContainer = document.querySelector('.board-container');
-var toggleButton = document.querySelector('.toggle-modes');
+var toggleButton = document.querySelector('.toggle-button');
+var toggleText = document.querySelector('p');
 
 
 board.addEventListener('click', function(event) {
@@ -84,6 +85,9 @@ function toggleTheme() {
         mainField.classList.add('main-oz');
         board.classList.add('board-oz');
         toggleButton.src = "./assets/ttt-board.png";
+        toggleText.innerText = 'return to original ->';
+        player1.token = 'T';
+        player2. token = 'W';
         for (var i = 0; i < cells.length; i++) {
             cells[i].classList.add('cell-oz');
         }
@@ -97,6 +101,9 @@ function toggleTheme() {
         mainField.classList.remove('main-oz');
         board.classList.remove('board-oz');
         toggleButton.src = "./assets/ruby-slippers.png";
+        toggleText.innerText = 'to tic-tac-toto ->'
+        player1.token = 'X';
+        player2. token = 'O';
         for (var i = 0; i < cells.length; i++) {
             cells[i].classList.remove('cell-oz');
         }

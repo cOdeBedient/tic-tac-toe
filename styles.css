@@ -46,9 +46,21 @@ h3 {
     margin-top: 1%;
 }
 
-.toggle-modes {
-    margin-left: 50%;
+.toggle-region {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     margin-bottom: 10%;
+    margin-right: 10%;
+}
+
+p {
+    color: white;
+    margin-right: 4%;
+}
+
+.toggle-button {
+
     width: 20%;
     cursor: pointer;
 }
@@ -164,4 +176,8 @@ h2 {
 
 .cell-oz {
     border: 5px;
+}
+
+.hidden {
+    opacity: 0;
 }
