@@ -1,3 +1,4 @@
+// Query Selectors
 var cells = document.querySelectorAll('.cell');
 var board = document.querySelector('.board');
 var p1Icon = document.querySelector('.p1-icon');
@@ -10,7 +11,7 @@ var boardContainer = document.querySelector('.board-container');
 var toggleButton = document.querySelector('.toggle-button');
 var toggleText = document.querySelector('p');
 
-
+//Event Listeners
 board.addEventListener('click', function(event) {
     if (!actionStop){
         var currentID = event.target.id;
@@ -20,7 +21,7 @@ board.addEventListener('click', function(event) {
 
 toggleButton.addEventListener('click', toggleModes);
 
-
+// Global Variables
 var player1 = {
     id: 'Toto',
     token: 'X',
@@ -38,7 +39,6 @@ var player1 = {
         squaresDiagRL: []
     }
 }
-
 var player2 = {
     id: 'Witch',
     token: 'O',
@@ -56,12 +56,12 @@ var player2 = {
         squaresDiagRL: []
     }
 }
-
 availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 whosTurn = 'player1';
 var actionStop = false;
 cPUMode = false;
 
+// Functions
 function toggleModes(){
     cPUMode = !cPUMode;
     whosTurn = 'player1';
@@ -158,7 +158,7 @@ function updateAvailable(iD) {
     }
 }
 
-//check for draw a different function??
+//check for draw a different function?? Is toggleTurn weird here?
 function checkForWin() {
     var player = window[whosTurn];
     var winner;
@@ -183,6 +183,7 @@ function checkForWin() {
     }
 }
 
+// get rid of the grid?
 function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].innerHTML = '';
@@ -387,7 +388,6 @@ function generateTurn() {
     }
 }
 
-
 function displayTurn() {
     if (whosTurn === 'player1') {
         if (cPUMode){
@@ -419,12 +419,9 @@ function processEndGame(winner) {
     setTimeout(function(){actionStop = false}, 3000);
     if (cPUMode){
         setTimeout(toggleTurn, 4000);
-        // setTimeout(displayTurn, 2000);
     } else {
         setTimeout(toggleTurn, 3000);
-        // setTimeout(displayTurn, 2000);
-    }
-    
+    } 
 }
 
 function updateWins() {
