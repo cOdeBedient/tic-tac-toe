@@ -13,6 +13,7 @@ var toggleText = document.querySelector('p');
 
 //Event Listeners
 board.addEventListener('click', function(event) {
+    console.log('actionStop within event listener =', actionStop);
     if (!actionStop){
         var currentID = event.target.id;
         manageBoardClick(currentID);
@@ -213,6 +214,8 @@ function toggleTurn() {
             whosTurn = 'player2';
             displayTurn();
             if (!actionStop) {
+                actionStop = true;
+                setTimeout(function() {actionStop = false}, 750);
                 setTimeout(generateTurn, 750);
             } else {
                 generateTurn();
@@ -221,9 +224,9 @@ function toggleTurn() {
             whosTurn = 'player1';
             displayTurn();
         }
-        if (actionStop = false) {
-            displayTurn();
-        }
+        // if (actionStop = true) {
+        //     displayTurn();
+        // }
     } else {
         if (whosTurn === 'player1') {
         whosTurn = 'player2';
@@ -381,7 +384,7 @@ function generateTurn() {
             }
         }
     }
-    if (!conditionMet && actionStop === false) {
+    if (!conditionMet && !actionStop) {
         var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
         var randomCell = availableSquares[randomCellsIndex];
         manageBoardClick(randomCell);
