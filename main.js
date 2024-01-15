@@ -83,6 +83,7 @@ function toggleTheme() {
         boardContainer.classList.add('board-container-oz');
         mainField.classList.add('main-oz');
         board.classList.add('board-oz');
+        toggleButton.src = "./assets/ttt-board.png";
         for (var i = 0; i < cells.length; i++) {
             cells[i].classList.add('cell-oz');
         }
@@ -92,9 +93,10 @@ function toggleTheme() {
         statusTitle.innerHTML = `It's X's turn`;
         mainField.classList.remove('main-oz');
         statusTitle.classList.remove('game-status-oz');
-        boardContainer.classList.remove('board-comtainer-oz');
+        boardContainer.classList.remove('board-container-oz');
         mainField.classList.remove('main-oz');
         board.classList.remove('board-oz');
+        toggleButton.src = "./assets/ruby-slippers.png";
         for (var i = 0; i < cells.length; i++) {
             cells[i].classList.remove('cell-oz');
         }

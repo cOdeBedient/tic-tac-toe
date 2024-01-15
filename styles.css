@@ -4,10 +4,12 @@ body {
 }
 
 aside {
- text-align: center;
- padding-top: 2%;
- background-color: black;
- width: 25%;
+    text-align: center;
+    padding-top: 2%;
+    background-color: black;
+    width: 25%;
+
+    /* border: 3px solid red; */
 }
 
 .right-column {
@@ -18,11 +20,20 @@ aside {
 }
 
 .player1-icon {
-    height: 22%;
+    width: 50%;
 }
 
 .player2-icon {
-    height: 25%;
+    width: 55%;
+    /* border: 3px solid blue; */
+}
+
+.p2-icon {
+    /* border: 3px solid yellow; */
+}
+
+.p2-details {
+    /* border: 3px solid pink; */
 }
 
 h3 {
@@ -36,8 +47,8 @@ h3 {
 }
 
 .toggle-modes {
-    margin-left: 40%;
-    margin-bottom: 15%;
+    margin-left: 50%;
+    margin-bottom: 10%;
     width: 20%;
     cursor: pointer;
 }
@@ -86,7 +97,7 @@ main {
 
 h2 {
     font-size: 3vw;
-    margin-top: 20%;
+    margin-top: 15%;
 }
 
 .board-container {
