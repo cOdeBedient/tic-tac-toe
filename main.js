@@ -122,7 +122,15 @@ function manageBoardClick(iD) {
         storeSquare(iD);
         updateAvailable(iD);
         displayIcons();
-        checkForWin();
+        var winCheck = checkForWin();
+        if (winCheck.gameOver) {
+            processEndGame(result.playerName);
+        }
+
+
+
+
+        
     }
 }
 
@@ -162,7 +170,10 @@ function updateAvailable(iD) {
 //check for draw a different function?? Is toggleTurn weird here?
 function checkForWin() {
     var player = window[whosTurn];
-    var winner;
+    var result = {
+        playerName: player.id,
+        gameOver: false
+    }
     if (
         (player.currentSquares.squaresA.length === 3) ||
         (player.currentSquares.squaresB.length === 3) ||
@@ -174,13 +185,12 @@ function checkForWin() {
         (player.currentSquares.squaresDiagRL.length === 3)
         )
     {
-        winner = player.id;
-        processEndGame(winner);
+        result.gameOver = true;
+        return result;
     } else if (availableSquares.length === 0) {
-        winner = 'draw';
-        processEndGame(winner);
-    } else {
-        toggleTurn();
+        result.playerName = 'draw';
+        result.gameOver = true;
+        return result;
     }
 }
 
@@ -237,7 +247,7 @@ function toggleTurn() {
     }
 }
 
-// change conditionMet === false to !conditionMet
+// i = avalableSquares.length as a way to bail out instead of action stop? Also availableSquares.length will change during this, which is not good.
 function generateTurn() {
     var conditionMet = false;
     if (player2.currentSquares.squares1.length === 2){
