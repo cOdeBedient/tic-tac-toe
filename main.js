@@ -116,7 +116,6 @@ function resetWins() {
     player2.wins = 0;
 }
 
-// maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
     if (availableSquares.includes(iD)) {
         storeSquare(iD);
@@ -131,7 +130,7 @@ function manageBoardClick(iD) {
                 setTimeout(displayTurn, 4000);
                 setTimeout(displayIcons, 3000)
                 if (whosTurn === 'player1') {
-                    setTimeout(generateTurn, 4000);
+                    setTimeout(generateTurn, 4750);
                 }
             } else {
                 actionStop = true;
@@ -146,7 +145,9 @@ function manageBoardClick(iD) {
             displayTurn();
             console.log('whosTurn before if', whosTurn)
             if (cPUMode && whosTurn === 'player2'){
+                actionStop = true;
                 setTimeout(generateTurn, 750);
+                setTimeout(function() {actionStop = false}, 750);
             }
         }
     }
@@ -185,7 +186,6 @@ function updateAvailable(iD) {
     }
 }
 
-//check for draw a different function?? Is toggleTurn weird here?
 function checkForWin() {
     var player = window[whosTurn];
     var result = {
@@ -233,7 +233,6 @@ function toggleTurn() {
     }
 }
 
-// i = avalableSquares.length as a way to bail out instead of action stop? Also availableSquares.length will change during this, which is not good.
 function generateTurn() {
     var conditionMet = false;
     var bestChoice;
@@ -409,7 +408,6 @@ function displayTurn() {
     }
 }
 
-// let's make better names for process and manage end game
 function processEndGame(winner) {
     if (winner != 'draw'){
         updateWins();
