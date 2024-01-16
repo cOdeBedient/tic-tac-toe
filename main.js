@@ -102,7 +102,7 @@ function toggleTheme() {
         mainField.classList.remove('main-oz');
         board.classList.remove('board-oz');
         toggleButton.src = "./assets/ruby-slippers.png";
-        toggleText.innerText = 'enter tic-tac-toto ->'
+        toggleText.innerText = 'tic-tactical-toto ->'
         player1.token = 'X';
         player2. token = 'O';
         for (var i = 0; i < cells.length; i++) {
@@ -123,7 +123,6 @@ function manageBoardClick(iD) {
         updateAvailable(iD);
         displayIcons();
         var winCheck = checkForWin();
-        console.log('winCheck', winCheck)
         if (winCheck.gameOver) {
             if (cPUMode) {
                 actionStop = true;
@@ -143,10 +142,12 @@ function manageBoardClick(iD) {
             }
             processEndGame(winCheck.playerName);
         } else {
-            console.log ('made it here and whosTurn is', whosTurn)
             toggleTurn();
-            console.log ('made it here and whosTurn is', whosTurn)
             displayTurn();
+            console.log('whosTurn before if', whosTurn)
+            if (cPUMode && whosTurn === 'player2'){
+                setTimeout(generateTurn, 750);
+            }
         }
     }
 }
