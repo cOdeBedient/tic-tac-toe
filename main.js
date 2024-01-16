@@ -102,7 +102,7 @@ function toggleTheme() {
         mainField.classList.remove('main-oz');
         board.classList.remove('board-oz');
         toggleButton.src = "./assets/ruby-slippers.png";
-        toggleText.innerText = 'enter tic-tac-toto ->'
+        toggleText.innerText = 'tic-tactical-toto ->'
         player1.token = 'X';
         player2. token = 'O';
         for (var i = 0; i < cells.length; i++) {
@@ -116,14 +116,12 @@ function resetWins() {
     player2.wins = 0;
 }
 
-// maybe one displayAll() function broken up into the different displays?
 function manageBoardClick(iD) {
     if (availableSquares.includes(iD)) {
         storeSquare(iD);
         updateAvailable(iD);
         displayIcons();
         var winCheck = checkForWin();
-        console.log('winCheck', winCheck)
         if (winCheck.gameOver) {
             if (cPUMode) {
                 actionStop = true;
@@ -132,7 +130,7 @@ function manageBoardClick(iD) {
                 setTimeout(displayTurn, 4000);
                 setTimeout(displayIcons, 3000)
                 if (whosTurn === 'player1') {
-                    setTimeout(generateTurn, 4000);
+                    setTimeout(generateTurn, 4750);
                 }
             } else {
                 actionStop = true;
@@ -143,10 +141,14 @@ function manageBoardClick(iD) {
             }
             processEndGame(winCheck.playerName);
         } else {
-            console.log ('made it here and whosTurn is', whosTurn)
             toggleTurn();
-            console.log ('made it here and whosTurn is', whosTurn)
             displayTurn();
+            console.log('whosTurn before if', whosTurn)
+            if (cPUMode && whosTurn === 'player2'){
+                actionStop = true;
+                setTimeout(generateTurn, 750);
+                setTimeout(function() {actionStop = false}, 750);
+            }
         }
     }
 }
@@ -184,7 +186,6 @@ function updateAvailable(iD) {
     }
 }
 
-//check for draw a different function?? Is toggleTurn weird here?
 function checkForWin() {
     var player = window[whosTurn];
     var result = {
@@ -232,7 +233,6 @@ function toggleTurn() {
     }
 }
 
-// i = avalableSquares.length as a way to bail out instead of action stop? Also availableSquares.length will change during this, which is not good.
 function generateTurn() {
     var conditionMet = false;
     var bestChoice;
@@ -408,7 +408,6 @@ function displayTurn() {
     }
 }
 
-// let's make better names for process and manage end game
 function processEndGame(winner) {
     if (winner != 'draw'){
         updateWins();
