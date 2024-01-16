@@ -123,12 +123,14 @@ function manageBoardClick(iD) {
         updateAvailable(iD);
         displayIcons();
         var winCheck = checkForWin();
+        console.log('winCheck', winCheck)
         if (winCheck.gameOver) {
             if (cPUMode) {
                 actionStop = true;
                 setTimeout(function() {actionStop = false}, 4000);
                 setTimeout(toggleTurn, 4000);
                 setTimeout(displayTurn, 4000);
+                setTimeout(displayIcons, 3000)
                 if (whosTurn === 'player1') {
                     setTimeout(generateTurn, 4000);
                 }
@@ -137,8 +139,14 @@ function manageBoardClick(iD) {
                 setTimeout(function() {actionStop = false}, 3000);
                 setTimeout(toggleTurn, 3000);
                 setTimeout(displayTurn, 3000);
+                setTimeout(displayIcons, 3000);
             }
             processEndGame(result.playerName);
+        } else {
+            console.log ('made it here and whosTurn is', whosTurn)
+            toggleTurn();
+            console.log ('made it here and whosTurn is', whosTurn)
+            displayTurn();
         }
     }
 }
@@ -201,6 +209,7 @@ function checkForWin() {
         result.gameOver = true;
         return result;
     }
+    return result;
 }
 
 function displayIcons() {
@@ -216,12 +225,10 @@ function displayIcons() {
 }
 
 function toggleTurn() {
-    if (cPUMode) {
-        if (whosTurn === 'player1') {
-            whosTurn = 'player2';
-        } else {
-            whosTurn = 'player1';
-        }
+    if (whosTurn === 'player1') {
+        whosTurn = 'player2';
+    } else {
+        whosTurn = 'player1';
     }
 }
 
