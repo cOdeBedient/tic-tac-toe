@@ -141,7 +141,7 @@ function manageBoardClick(iD) {
                 setTimeout(displayTurn, 3000);
                 setTimeout(displayIcons, 3000);
             }
-            processEndGame(result.playerName);
+            processEndGame(winCheck.playerName);
         } else {
             console.log ('made it here and whosTurn is', whosTurn)
             toggleTurn();
