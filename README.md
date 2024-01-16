@@ -20,7 +20,7 @@ Adam Bedient
 - Run `open index.html` on command line to open the application in the browser
 - Alternatively, deployed site can be found [here]("https://cOdeBedient.github.io/tic-tac-toe/")
 ## Preview of App
-[oz-mode](<video src="assets/tic-tactical-toto-screen-capture.mp4" controls title="Title"></video>)
+[oz-mode](https://github.com/cOdeBedient/tic-tac-toe/assets/144140381/6de5e410-7919-47e4-9571-0dca22efb750)
 ## Context
 - Adam is in his final week of Mod 1 at the Turing Front End Software Engineering program.
 - Code took approximately 12 hours to complete. Base iteration took 4, Oz Mode 8.
