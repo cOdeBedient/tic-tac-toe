@@ -124,13 +124,22 @@ function manageBoardClick(iD) {
         displayIcons();
         var winCheck = checkForWin();
         if (winCheck.gameOver) {
+            if (cPUMode) {
+                actionStop = true;
+                setTimeout(function() {actionStop = false}, 4000);
+                setTimeout(toggleTurn, 4000);
+                setTimeout(displayTurn, 4000);
+                if (whosTurn === 'player1') {
+                    setTimeout(generateTurn, 4000);
+                }
+            } else {
+                actionStop = true;
+                setTimeout(function() {actionStop = false}, 3000);
+                setTimeout(toggleTurn, 3000);
+                setTimeout(displayTurn, 3000);
+            }
             processEndGame(result.playerName);
         }
-
-
-
-
-        
     }
 }
 
@@ -194,131 +203,102 @@ function checkForWin() {
     }
 }
 
-// get rid of the grid?
 function displayIcons() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].innerHTML = '';
         if (player1.currentSquares.all.includes(cells[i].id)) {
-            // if(cPUMode){
-            //     cells[i].innerHTML = `<img class="board-icon cell" src="${player1.image}" alt="toto">`;
-            // } else {
             cells[i].innerHTML = `${player1.token}`;
-            // }
         }
         if (player2.currentSquares.all.includes(cells[i].id)) {
-            // if (cPUMode){
-            //     cells[i].innerHTML = `<img class="board-icon cell" src="${player2.image}" alt="wicked-witch">`;
-            // } else {
             cells[i].innerHTML = `${player2.token}`;
-            // }
         }
     }
 }
 
-// can we use our math here? Is this DRY?
-// where should generateTurn go???
-// I think toggleTurn and display turn should be pure, and both called in handleTurn
 function toggleTurn() {
     if (cPUMode) {
         if (whosTurn === 'player1') {
             whosTurn = 'player2';
-            displayTurn();
-            if (!actionStop) {
-                actionStop = true;
-                setTimeout(function() {actionStop = false}, 750);
-                setTimeout(generateTurn, 750);
-            } else {
-                generateTurn();
-            }
         } else {
             whosTurn = 'player1';
-            displayTurn();
         }
-        // if (actionStop = true) {
-        //     displayTurn();
-        // }
-    } else {
-        if (whosTurn === 'player1') {
-        whosTurn = 'player2';
-        } else {
-        whosTurn = 'player1';
-        }
-        displayTurn();
     }
 }
 
 // i = avalableSquares.length as a way to bail out instead of action stop? Also availableSquares.length will change during this, which is not good.
 function generateTurn() {
     var conditionMet = false;
+    var bestChoice;
     if (player2.currentSquares.squares1.length === 2){
         console.log('1 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('1') && !actionStop){
+            if (availableSquares[i].includes('1')){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player2.currentSquares.squares2.length === 2) {
         console.log('2 has 2')
             for (var i = 0; i < availableSquares.length; i++) {
-                if (availableSquares[i].includes('2') && !conditionMet && !actionStop){
+                if (availableSquares[i].includes('2') && !conditionMet){
                     conditionMet = true;
-                    manageBoardClick(availableSquares[i]);
+                    bestChoice = availableSquares[i];
                 }
             }
     }
     if (player2.currentSquares.squares3.length === 2) {
         console.log('3 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('3') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('3') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player2.currentSquares.squaresA.length === 2) {
         console.log('A has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('a') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('a') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player2.currentSquares.squaresB.length === 2) {
         console.log('B has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('b') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('b') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player2.currentSquares.squaresC.length === 2) {
         console.log('C has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('c') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('c') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player2.currentSquares.squaresDiagLR.length === 2) {
         console.log('LR has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet && !actionStop){
+            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player2.currentSquares.squaresDiagRL.length === 2) {
         console.log('RL has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet && !actionStop){
+            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
@@ -326,76 +306,79 @@ function generateTurn() {
     if (player1.currentSquares.squares1.length === 2){
         console.log('1 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('1') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('1') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player1.currentSquares.squares2.length === 2) {
         console.log('2 has 2')
             for (var i = 0; i < availableSquares.length; i++) {
-                if (availableSquares[i].includes('2') && !conditionMet && !actionStop){
+                if (availableSquares[i].includes('2') && !conditionMet){
                     conditionMet = true;
-                    manageBoardClick(availableSquares[i]);
+                    bestChoice = availableSquares[i];
                 }
             }
     }
     if (player1.currentSquares.squares3.length === 2) {
         console.log('3 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('3') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('3') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player1.currentSquares.squaresA.length === 2) {
         console.log('A has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('a') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('a') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player1.currentSquares.squaresB.length === 2) {
         console.log('B has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('b') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('b') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player1.currentSquares.squaresC.length === 2) {
         console.log('C has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if (availableSquares[i].includes('c') && !conditionMet && !actionStop){
+            if (availableSquares[i].includes('c') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player1.currentSquares.squaresDiagLR.length === 2) {
         console.log('LR has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet  && !actionStop){
+            if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
     if (player1.currentSquares.squaresDiagRL.length === 2) {
         console.log('RL has 2')
         for (var i = 0; i < availableSquares.length; i++) {
-            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet  && !actionStop){
+            if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet){
                 conditionMet = true;
-                manageBoardClick(availableSquares[i]);
+                bestChoice = availableSquares[i];
             }
         }
     }
-    if (!conditionMet && !actionStop) {
+    
+    if (conditionMet) {
+        manageBoardClick(bestChoice);
+    } else {
         var randomCellsIndex = Math.floor(Math.random() * availableSquares.length);
         var randomCell = availableSquares[randomCellsIndex];
         manageBoardClick(randomCell);
@@ -423,19 +406,11 @@ function processEndGame(winner) {
     if (winner != 'draw'){
         updateWins();
         displayWins();
-        manageGameEnd(winner);
+        showResult(winner);
     } else {
-        manageGameEnd('draw');  
+        showResult('draw');  
     }
     resetStored();
-    actionStop = true;
-    setTimeout(displayIcons, 3000);
-    setTimeout(function(){actionStop = false}, 3000);
-    if (cPUMode){
-        setTimeout(toggleTurn, 4000);
-    } else {
-        setTimeout(toggleTurn, 3000);
-    } 
 }
 
 function updateWins() {
@@ -474,7 +449,7 @@ function resetStored() {
     availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 }
 
-function manageGameEnd(winner) {
+function showResult(winner) {
     if (winner === 'draw') {
         statusTitle.innerHTML = "It's a Draw!"
     } else {
