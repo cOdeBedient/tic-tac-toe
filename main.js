@@ -13,7 +13,6 @@ var toggleText = document.querySelector('p');
 
 //Event Listeners
 board.addEventListener('click', function(event) {
-    console.log('actionStop within event listener =', actionStop);
     if (!actionStop){
         var currentID = event.target.id;
         manageBoardClick(currentID);
@@ -57,10 +56,10 @@ var player2 = {
         squaresDiagRL: []
     }
 }
-availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
-whosTurn = 'player1';
+var availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
+var whosTurn = 'player1';
 var actionStop = false;
-cPUMode = false;
+var cPUMode = false;
 
 // Audio loads
 var dogBark = new Audio('./assets/dog-bark.mp3');
@@ -338,7 +337,6 @@ function generateTurn() {
     var conditionMet = false;
     var bestChoice;
     if (player2.currentSquares.squares1.length === 2){
-        console.log('1 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('1')){
                 conditionMet = true;
@@ -348,7 +346,6 @@ function generateTurn() {
         }
     }
     if (player2.currentSquares.squares2.length === 2) {
-        console.log('2 has 2')
             for (var i = 0; i < availableSquares.length; i++) {
                 if (availableSquares[i].includes('2') && !conditionMet){
                     conditionMet = true;
@@ -357,7 +354,6 @@ function generateTurn() {
             }
     }
     if (player2.currentSquares.squares3.length === 2) {
-        console.log('3 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('3') && !conditionMet){
                 conditionMet = true;
@@ -366,7 +362,6 @@ function generateTurn() {
         }
     }
     if (player2.currentSquares.squaresA.length === 2) {
-        console.log('A has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('a') && !conditionMet){
                 conditionMet = true;
@@ -375,7 +370,6 @@ function generateTurn() {
         }
     }
     if (player2.currentSquares.squaresB.length === 2) {
-        console.log('B has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('b') && !conditionMet){
                 conditionMet = true;
@@ -384,7 +378,6 @@ function generateTurn() {
         }
     }
     if (player2.currentSquares.squaresC.length === 2) {
-        console.log('C has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('c') && !conditionMet){
                 conditionMet = true;
@@ -393,7 +386,6 @@ function generateTurn() {
         }
     }
     if (player2.currentSquares.squaresDiagLR.length === 2) {
-        console.log('LR has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet){
                 conditionMet = true;
@@ -402,7 +394,6 @@ function generateTurn() {
         }
     }
     if (player2.currentSquares.squaresDiagRL.length === 2) {
-        console.log('RL has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet){
                 conditionMet = true;
@@ -412,7 +403,6 @@ function generateTurn() {
     }
 
     if (player1.currentSquares.squares1.length === 2){
-        console.log('1 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('1') && !conditionMet){
                 conditionMet = true;
@@ -421,7 +411,6 @@ function generateTurn() {
         }
     }
     if (player1.currentSquares.squares2.length === 2) {
-        console.log('2 has 2')
             for (var i = 0; i < availableSquares.length; i++) {
                 if (availableSquares[i].includes('2') && !conditionMet){
                     conditionMet = true;
@@ -430,7 +419,6 @@ function generateTurn() {
             }
     }
     if (player1.currentSquares.squares3.length === 2) {
-        console.log('3 has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('3') && !conditionMet){
                 conditionMet = true;
@@ -439,7 +427,6 @@ function generateTurn() {
         }
     }
     if (player1.currentSquares.squaresA.length === 2) {
-        console.log('A has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('a') && !conditionMet){
                 conditionMet = true;
@@ -448,7 +435,6 @@ function generateTurn() {
         }
     }
     if (player1.currentSquares.squaresB.length === 2) {
-        console.log('B has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('b') && !conditionMet){
                 conditionMet = true;
@@ -457,7 +443,6 @@ function generateTurn() {
         }
     }
     if (player1.currentSquares.squaresC.length === 2) {
-        console.log('C has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('c') && !conditionMet){
                 conditionMet = true;
@@ -466,7 +451,6 @@ function generateTurn() {
         }
     }
     if (player1.currentSquares.squaresDiagLR.length === 2) {
-        console.log('LR has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if ((availableSquares[i] === 'a1' || availableSquares[i] === 'b2' || availableSquares[i] === 'c3') && !conditionMet){
                 conditionMet = true;
@@ -475,7 +459,6 @@ function generateTurn() {
         }
     }
     if (player1.currentSquares.squaresDiagRL.length === 2) {
-        console.log('RL has 2')
         for (var i = 0; i < availableSquares.length; i++) {
             if ((availableSquares[i] === 'a3' || availableSquares[i] === 'b2' || availableSquares[i] === 'c1') && !conditionMet){
                 conditionMet = true;
