@@ -8,8 +8,6 @@ aside {
     padding-top: 2%;
     background-color: black;
     width: 25%;
-
-    /* border: 3px solid red; */
 }
 
 .right-column {
@@ -25,15 +23,6 @@ aside {
 
 .player2-icon {
     width: 55%;
-    /* border: 3px solid blue; */
-}
-
-.p2-icon {
-    /* border: 3px solid yellow; */
-}
-
-.p2-details {
-    /* border: 3px solid pink; */
 }
 
 h3 {
