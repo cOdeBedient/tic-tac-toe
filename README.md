@@ -13,12 +13,12 @@ I built a tic tac toe board with both one and two-player modes.
 ## Contributors
 Adam Bedient
 ## Installation Instructions
-- Private repository can be found [here]("https://github.com/cOdeBedient/tic-tac-toe")
+- Private repository can be found [here](https://github.com/cOdeBedient/tic-tac-toe)
 - Use the green code button to access and copy the SSH link
 - Run `git clone` on command line followed by the the pasted SSH link
 - Run `code .` on command line to open in text editor
 - Run `open index.html` on command line to open the application in the browser
-- Alternatively, deployed site can be found [here]("https://cOdeBedient.github.io/tic-tac-toe/")
+- Alternatively, deployed site can be found [here](https://cOdeBedient.github.io/tic-tac-toe/)
 ## Preview of App
 [oz-mode](https://github.com/cOdeBedient/tic-tac-toe/assets/144140381/6de5e410-7919-47e4-9571-0dca22efb750)
 ## Context
