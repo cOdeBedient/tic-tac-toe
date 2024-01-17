@@ -62,6 +62,12 @@ whosTurn = 'player1';
 var actionStop = false;
 cPUMode = false;
 
+// Audio loads
+var dogBark = new Audio('./assets/dog-bark.mp3');
+var witchCackle = new Audio('./assets/witch-cackle.ogg');
+var africaSong = new Audio('./assets/africa.mp3');
+var witchyWoman = new Audio('./assets/witchy-woman.mp3');
+
 // Functions
 function toggleModes(){
     cPUMode = !cPUMode;
@@ -173,11 +179,9 @@ function updateAvailable(iD) {
     for (i = 0; i < availableSquares.length; i++) {
         if (iD === availableSquares[i]) {
             if (cPUMode) {
-                if (whosTurn === 'player1'){
-                    var dogBark = new Audio('./assets/dog-bark.mp3');
+                if (whosTurn === 'player1'){   
                     dogBark.play();
                 } else {
-                    var witchCackle = new Audio('./assets/witch-cackle.ogg');
                     witchCackle.play();
                 }
             }
@@ -230,6 +234,92 @@ function toggleTurn() {
         whosTurn = 'player2';
     } else {
         whosTurn = 'player1';
+    }
+}
+
+function displayTurn() {
+    if (whosTurn === 'player1') {
+        if (cPUMode){
+        statusTitle.innerHTML = `It's ${player1.id}'s turn`
+        } else {
+            statusTitle.innerHTML = `It's ${player1.token}'s turn`
+        }
+    } else {
+        if (cPUMode) {
+            statusTitle.innerHTML = `It's ${player2.id}'s turn`
+        } else {
+            statusTitle.innerHTML = `It's ${player2.token}'s turn`
+        } 
+    }
+}
+
+function processEndGame(winner) {
+    if (winner != 'draw'){
+        updateWins();
+        displayWins();
+        showResult(winner);
+    } else {
+        showResult('draw');  
+    }
+    resetStored();
+}
+
+function updateWins() {
+    var player = window[whosTurn];
+    player.wins += 1;
+}
+
+function displayWins() {
+        p1Wins.innerHTML = `${player1.wins} wins`;
+        p2Wins.innerHTML = `${player2.wins} wins`;
+}
+
+function resetStored() {
+    player1.currentSquares = {
+        all: [],
+        squaresA: [],
+        squaresB: [],
+        squaresC: [],
+        squares1: [],
+        squares2: [],
+        squares3: [],
+        squaresDiagLR: [],
+        squaresDiagRL: []
+    }
+    player2.currentSquares = {
+        all: [],
+        squaresA: [],
+        squaresB: [],
+        squaresC: [],
+        squares1: [],
+        squares2: [],
+        squares3: [],
+        squaresDiagLR: [],
+        squaresDiagRL: []
+    }
+    availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
+}
+
+function showResult(winner) {
+    if (winner === 'draw') {
+        statusTitle.innerHTML = "It's a Draw!"
+    } else {
+        var player = window[whosTurn];
+        if (cPUMode){
+            if (whosTurn === 'player1'){
+                africaSong.play();
+                mainField.classList.add('saturate');
+                setTimeout(function() {mainField.classList.remove('saturate')}, 4000);
+            } else {
+                witchyWoman.play();
+                mainField.classList.add('desaturate');
+                setTimeout(function() {mainField.classList.remove('desaturate')}, 4000);
+            }
+            statusTitle.innerHTML = `${player.id} won the game!`
+        } else {
+            var player = window[whosTurn];
+            statusTitle.innerHTML = `${player.token} won the game!`
+        }
     }
 }
 
@@ -392,90 +482,3 @@ function generateTurn() {
     }
 }
 
-function displayTurn() {
-    if (whosTurn === 'player1') {
-        if (cPUMode){
-        statusTitle.innerHTML = `It's ${player1.id}'s turn`
-        } else {
-            statusTitle.innerHTML = `It's ${player1.token}'s turn`
-        }
-    } else {
-        if (cPUMode) {
-            statusTitle.innerHTML = `It's ${player2.id}'s turn`
-        } else {
-            statusTitle.innerHTML = `It's ${player2.token}'s turn`
-        } 
-    }
-}
-
-function processEndGame(winner) {
-    if (winner != 'draw'){
-        updateWins();
-        displayWins();
-        showResult(winner);
-    } else {
-        showResult('draw');  
-    }
-    resetStored();
-}
-
-function updateWins() {
-    var player = window[whosTurn];
-    player.wins += 1;
-}
-
-function displayWins() {
-        p1Wins.innerHTML = `${player1.wins} wins`;
-        p2Wins.innerHTML = `${player2.wins} wins`;
-}
-
-function resetStored() {
-    player1.currentSquares = {
-        all: [],
-        squaresA: [],
-        squaresB: [],
-        squaresC: [],
-        squares1: [],
-        squares2: [],
-        squares3: [],
-        squaresDiagLR: [],
-        squaresDiagRL: []
-    }
-    player2.currentSquares = {
-        all: [],
-        squaresA: [],
-        squaresB: [],
-        squaresC: [],
-        squares1: [],
-        squares2: [],
-        squares3: [],
-        squaresDiagLR: [],
-        squaresDiagRL: []
-    }
-    availableSquares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
-}
-
-function showResult(winner) {
-    if (winner === 'draw') {
-        statusTitle.innerHTML = "It's a Draw!"
-    } else {
-        var player = window[whosTurn];
-        if (cPUMode){
-            if (whosTurn === 'player1'){
-                var africaSong = new Audio('./assets/africa.mp3');
-                africaSong.play();
-                mainField.classList.add('saturate');
-                setTimeout(function() {mainField.classList.remove('saturate')}, 4000);
-            } else {
-                var witchyWoman = new Audio('./assets/witchy-woman.mp3');
-                witchyWoman.play();
-                mainField.classList.add('desaturate');
-                setTimeout(function() {mainField.classList.remove('desaturate')}, 4000);
-            }
-            statusTitle.innerHTML = `${player.id} won the game!`
-        } else {
-            var player = window[whosTurn];
-            statusTitle.innerHTML = `${player.token} won the game!`
-        }
-    }
-}
