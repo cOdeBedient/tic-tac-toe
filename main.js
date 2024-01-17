@@ -130,13 +130,24 @@ function manageBoardClick(iD) {
         var winCheck = checkForWin();
         if (winCheck.gameOver) {
             if (cPUMode) {
-                actionStop = true;
-                setTimeout(function() {actionStop = false}, 4000);
-                setTimeout(toggleTurn, 4000);
-                setTimeout(displayTurn, 4000);
-                setTimeout(displayIcons, 3000)
-                if (whosTurn === 'player1') {
-                    setTimeout(generateTurn, 4750);
+                if (winCheck.playerName === 'draw'){
+                    actionStop = true;
+                    setTimeout(function() {actionStop = false}, 3000);
+                    setTimeout(toggleTurn, 3000);
+                    setTimeout(displayTurn, 3000);
+                    setTimeout(displayIcons, 3000)
+                    if (whosTurn === 'player1') {
+                        setTimeout(generateTurn, 3750);
+                    }
+                } else {
+                    actionStop = true;
+                    setTimeout(function() {actionStop = false}, 4000);
+                    setTimeout(toggleTurn, 4500);
+                    setTimeout(displayTurn, 4500);
+                    setTimeout(displayIcons, 3500)
+                    if (whosTurn === 'player1') {
+                        setTimeout(generateTurn, 5250);
+                    }
                 }
             } else {
                 actionStop = true;
