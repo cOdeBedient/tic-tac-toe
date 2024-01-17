@@ -159,7 +159,6 @@ function manageBoardClick(iD) {
         } else {
             toggleTurn();
             displayTurn();
-            console.log('whosTurn before if', whosTurn)
             if (cPUMode && whosTurn === 'player2'){
                 actionStop = true;
                 setTimeout(generateTurn, 750);
@@ -340,7 +339,6 @@ function generateTurn() {
         for (var i = 0; i < availableSquares.length; i++) {
             if (availableSquares[i].includes('1')){
                 conditionMet = true;
-                bestChoice = availableSquares[i];
                 bestChoice = availableSquares[i];
             }
         }
