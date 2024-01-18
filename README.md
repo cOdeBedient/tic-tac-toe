@@ -13,7 +13,7 @@ I built a tic tac toe board with both one and two-player modes.
 ## Contributors
 Adam Bedient
 ## Installation Instructions
-- Private repository can be found [here](https://github.com/cOdeBedient/tic-tac-toe)
+- Public repository can be found [here](https://github.com/cOdeBedient/tic-tac-toe)
 - Use the green code button to access and copy the SSH link
 - Run `git clone` on command line followed by the the pasted SSH link
 - Run `code .` on command line to open in text editor
@@ -22,7 +22,7 @@ Adam Bedient
 ## Preview of App
 [oz-mode](https://github.com/cOdeBedient/tic-tac-toe/assets/144140381/6de5e410-7919-47e4-9571-0dca22efb750)
 ## Context
-- Adam is in his final week of Mod 1 at the Turing Front End Software Engineering program.
+- Adam is five weeks in to the Turing Front End Software Engineering program.
 - Code took approximately 12 hours to complete. Base iteration took 4, Oz Mode 8.
 ## Learning Goals
 - Gain understanding of creating a project from scratch, initiaing git, creating files, writing HTML, CSS, and JS with no provided elements.
