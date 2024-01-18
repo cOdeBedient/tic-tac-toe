@@ -99,7 +99,7 @@ function toggleTheme() {
         }
     } else {
         p1Icon.innerHTML = '<h3>X</h3>';
-        p2Icon.innerHTML = '<h3>O<h3>';
+        p2Icon.innerHTML = '<h3>O</h3>';
         statusTitle.innerHTML = `It's X's turn`;
         mainField.classList.remove('main-oz');
         statusTitle.classList.remove('game-status-oz');
